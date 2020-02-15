@@ -12,7 +12,6 @@ void setup() {
   for(int i=0; i<10; i++){
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 70, 1840), 700), new PVector(177, 100), color(0)); 
   }
-  
 }
 
 
@@ -53,4 +52,8 @@ boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOn
    if (rectOneX < rectTwoX + rectTwoWidth && rectOneX + rectOneWidth > rectTwoX && rectOneY < rectTwoY + rectTwoHeight && rectOneHeight + rectOneY > rectTwoY){
      return true;
    } else return false;
+}
+
+void mousePressed(){
+  blocks[0].removeShape();
 }

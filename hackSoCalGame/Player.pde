@@ -23,8 +23,12 @@ class Player {
     this.vel = new PVector(0, 0);
   }
 
+<<<<<<< HEAD
   //Draws the player
   void render() {
+=======
+  void render() {    
+>>>>>>> d22794535aeb908e9a40d270fcd742889e09037e
     if (this.onGround) {
       jumps = 1;
     } 
@@ -43,6 +47,7 @@ class Player {
 
     if (this.alive == false) {
       this.pos = new PVector(0, 0);
+      this.onGround = false;
       this.alive = true;
     }
 
@@ -58,7 +63,7 @@ class Player {
         this.force = new PVector(this.force.x, min(this.force.y, -this.vel.y));
         this.force = new PVector(this.force.x, this.force.y - 1);
         onGround = true;
-      }
+      } else onGround = false;
 
       if (this.pos.y > shape.pos.y) {
         this.force = new PVector(this.force.x, max(this.force.y, -this.vel.y));
@@ -68,7 +73,7 @@ class Player {
         this.force = new PVector(min(this.force.x, -this.vel.x), this.force.y);
       }
 
-      if (this.pos.x < shape.pos.x && onGround == false) {
+      if (this.pos.x > shape.pos.x && onGround == false) {
         this.force = new PVector(max(this.force.x, -this.vel.x), this.force.y);
       }
     }

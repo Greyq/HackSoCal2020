@@ -17,4 +17,8 @@ class Shape {
     fill(c);
     rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
   }
+  
+  void removeShape(){
+    this.size = new PVector(0, 0);  
+  }
 }
