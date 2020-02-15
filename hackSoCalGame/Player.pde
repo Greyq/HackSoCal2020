@@ -10,7 +10,7 @@ class Player {
     this.pos = pos;
     this.friction = friction;
     this.gravity = gravity;
-    this.jumps = 2;
+    this.jumps = 1;
     vel = new PVector(0, 0);
   }
 
@@ -39,21 +39,22 @@ class Player {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
       println("key");
-      if (key == 'w') {
+      if (keys[0] == true && this.jumps > 0) {
+        this.jumps -= 1;
         this.onGround = false;
-        force.add(new PVector(0, -1));
+        force.add(new PVector(0, -10));
         println("w");
       }
 
-      if (key == 'a') {
+      if (keys[1]) {
         force.add(new PVector(-1, 0));
       }
 
-      if (key == 's') {
+      if (keys[2]) {
         force.add(new PVector(0, 0));
       }
 
-      if (key == 'd') {
+      if (keys[3]) {
         force.add(new PVector(1, 0));
       }
     }
