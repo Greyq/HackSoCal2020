@@ -30,7 +30,9 @@ class Player {
 
     this.force.add(move());
     this.force = new PVector(this.force.x, this.force.y + gravity);
-    this.collide(70, 700, 1770, 100);
+    for (Shape shape : blocks){
+      this.collide(shape);
+    }
 
     this.vel.add(this.force);
     this.vel.mult(friction);
@@ -41,28 +43,28 @@ class Player {
       this.alive = true;
     }
 
-    this.shape = new Shape(pos, new PVector(20, 20));
-    this.shape.draw(255, 0, 0);
+    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0));
+    this.shape.drawShape();
     this.force.mult(0);
   }
 
-  void collide(int rectX, int rectY, int rectWidth, int rectHeight) {
-    if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, rectX, rectY, rectWidth, rectHeight)) {
-      if (this.pos.y < rectY) {
+  void collide(Shape shape) {
+    if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, shape.pos.x, shape.pos.y, shape.size.x, shape.size.y)) {
+      if (this.pos.y < shape.pos.y) {
         this.force = new PVector(this.force.x, min(this.force.y, -this.vel.y));
         this.force = new PVector(this.force.x, this.force.y - 1);
         onGround = true;
       }
 
-      if (this.pos.y > rectY) {
+      if (this.pos.y > shape.pos.y) {
         this.force = new PVector(this.force.x, max(this.force.y, -this.vel.y));
       }
 
-      if (this.pos.x < rectX) {
+      if (this.pos.x < shape.pos.x && onGround == false) {
         this.force = new PVector(min(this.force.x, -this.vel.x), this.force.y);
       }
 
-      if (this.pos.x < rectX) {
+      if (this.pos.x < shape.pos.x && onGround == false) {
         this.force = new PVector(max(this.force.x, -this.vel.x), this.force.y);
       }
     }
