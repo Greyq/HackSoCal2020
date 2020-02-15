@@ -1,6 +1,6 @@
-final class Timer {
+class Timer {
 
-    private long time;
+    long time;
 
     Timer() {
         time = -1;
