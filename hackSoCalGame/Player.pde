@@ -9,6 +9,7 @@ class Player {
   int jumps;
   boolean onGround;
   Shape shape;
+  boolean alive;
 
   Player(PVector pos, float friction, float gravity) {
     this.pos = pos;
@@ -16,13 +17,17 @@ class Player {
     this.gravity = gravity;
     this.jumps = 0;
     this.force = new PVector(0, 0);
-    vel = new PVector(0, 0);
+    this.alive = true;
+    this.vel = new PVector(0, 0);
   }
 
   void render() {
     if (this.onGround) {
-      jumps = 100;
-    }
+      jumps = 1;
+    } 
+
+    this.alive = this.inBounds();
+
     this.force.add(move());
     this.force = new PVector(this.force.x, this.force.y + gravity);
     this.collide(70, 700, 1770, 100);
@@ -30,6 +35,12 @@ class Player {
     this.vel.add(this.force);
     this.vel.mult(friction);
     this.pos.add(this.vel);
+
+    if (this.alive == false) {
+      this.pos = new PVector(0, 0);
+      this.alive = true;
+    }
+
     this.shape = new Shape(pos, new PVector(20, 20));
     this.shape.draw(255, 0, 0);
     this.force.mult(0);
@@ -61,11 +72,11 @@ class Player {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
       if (keys[0] == true && this.jumps > 0) {
+        println(this.jumps);
         this.jumps -= 1;
         this.onGround = false;
         force.add(new PVector(0, -30));
       }
-
       if (keys[1]) {
         force.add(new PVector(-1, 0));
       }
@@ -80,4 +91,11 @@ class Player {
     }
     return force;
   }
-}
+
+
+  boolean inBounds() {
+    if (this.pos.y > height) {
+      return false;
+    } else return true;
+  }
+}  
