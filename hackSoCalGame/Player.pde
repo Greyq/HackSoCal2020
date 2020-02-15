@@ -23,12 +23,8 @@ class Player {
     this.vel = new PVector(0, 0);
   }
 
-<<<<<<< HEAD
   //Draws the player
   void render() {
-=======
-  void render() {    
->>>>>>> d22794535aeb908e9a40d270fcd742889e09037e
     if (this.onGround) {
       jumps = 1;
     } 
