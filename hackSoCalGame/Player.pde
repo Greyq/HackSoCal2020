@@ -1,3 +1,5 @@
+Shape playerShape;
+
 class Player {
   PVector pos;
   PVector vel;
@@ -6,6 +8,7 @@ class Player {
   PVector force;
   int jumps;
   boolean onGround;
+  Shape shape;
 
   Player(PVector pos, float friction, float gravity) {
     this.pos = pos;
@@ -27,8 +30,8 @@ class Player {
     this.vel.add(this.force);
     this.vel.mult(friction);
     this.pos.add(this.vel);
-    fill(255, 0, 0);
-    rect(pos.x, pos.y, 20, 20);
+    this.shape = new Shape(pos, new PVector(20, 20));
+    this.shape.draw(255, 0, 0);
     this.force.mult(0);
   }
 
