@@ -31,14 +31,9 @@ class Player {
     vel.add(this.force);
     vel.mult(friction);
     this.pos.add(this.vel);
-<<<<<<< HEAD
     this.shape = new Shape(pos, new PVector(20, 20));
     this.shape.draw(255, 0, 0);
-=======
-    fill(255, 0, 0);
-    rect(pos.x, pos.y, 20, 20);
     this.force.mult(0);
->>>>>>> 64b2c7661959e440bfac4b6a447133de2fb11e6d
   }
 
   void collide(int rectX, int rectY, int rectWidth, int rectHeight) {
