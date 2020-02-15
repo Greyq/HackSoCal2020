@@ -1,6 +1,7 @@
 Shape playerShape;
 
 class Player {
+  //The variables we need for the player to allow movement
   PVector pos;
   PVector vel;
   float friction;
@@ -11,6 +12,7 @@ class Player {
   Shape shape;
   boolean alive;
 
+  //The player that we can create
   Player(PVector pos, float friction, float gravity) {
     this.pos = pos;
     this.friction = friction;
@@ -21,6 +23,7 @@ class Player {
     this.vel = new PVector(0, 0);
   }
 
+  //Draws the player
   void render() {
     if (this.onGround) {
       jumps = 1;
@@ -48,6 +51,7 @@ class Player {
     this.force.mult(0);
   }
 
+  //Manages the collisions
   void collide(Shape shape) {
     if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, shape.pos.x, shape.pos.y, shape.size.x, shape.size.y)) {
       if (this.pos.y < shape.pos.y) {
@@ -70,6 +74,7 @@ class Player {
     }
   }
 
+  //Uses keyboard to move
   PVector move() {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
@@ -94,7 +99,7 @@ class Player {
     return force;
   }
 
-
+  //Keeps player from going off the screen
   boolean inBounds() {
     if (this.pos.y > height) {
       return false;
