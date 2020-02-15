@@ -1,4 +1,5 @@
 Player player;
+Shape shape;
 boolean[] keys;
 
 void setup() {
@@ -6,6 +7,8 @@ void setup() {
   player = new Player(new PVector(100, 50), 0.9, 1);
   keys=new boolean[4];
   keys = new boolean[] {false, false, false, false};
+  shape = new Shape(new PVector(10, 10), new PVector(10, 10));
+  
 }
 
 
@@ -14,6 +17,7 @@ void draw() {
   fill(0);
   rect(70, 700, 1770, 100);
   player.render();
+  shape.draw(100, 25, 100);
 }  
 
 
@@ -24,7 +28,7 @@ void keyPressed() {
     keys[1]=true;
   if (key=='s')
     keys[2]=true;
-  if (key=='d')a
+  if (key=='d')
     keys[3]=true;
 }
 
