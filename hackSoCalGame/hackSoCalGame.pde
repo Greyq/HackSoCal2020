@@ -42,3 +42,9 @@ void keyReleased() {
   if (key=='d')
     keys[3]=false;
 }
+
+boolean overlap(int rectOneX, int rectOneY, int rectOneWidth, int rectOneHeight, int rectTwoX, int rectTwoY, int rectTwoWidth, int rectTwoHeight){
+   if (rectOneX < rectTwoX + rectTwoWidth && rectOneX + rectOneWidth > rectTwoX && rectOneY < rectTwoY + rectTwoHeight && rectOneHeight + rectOneY > rectTwoY){
+     return true;
+   } else return false;
+}

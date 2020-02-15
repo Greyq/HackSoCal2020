@@ -5,6 +5,7 @@ class Player {
   PVector vel;
   float friction;
   float gravity;
+  PVector force;
   int jumps;
   boolean onGround;
   Shape shape;
@@ -14,39 +15,61 @@ class Player {
     this.friction = friction;
     this.gravity = gravity;
     this.jumps = 1;
+    this.force = new PVector(0, 0);
     vel = new PVector(0, 0);
   }
 
   void render() {
-    if (this.onGround == false) vel.add(new PVector(0, gravity));
-    this.onGround = this.collide();
-
     if (this.onGround) {
       vel = new PVector(vel.x, 0);
-      jumps = 2;
+      jumps = 1;
     }
-    vel.add(move());
+    this.force.add(move());
+    this.force = new PVector(this.force.x, this.force.y + gravity);
+    this.collide(70, 700, 1770, 100);
+
+    vel.add(this.force);
     vel.mult(friction);
     this.pos.add(this.vel);
+<<<<<<< HEAD
     this.shape = new Shape(pos, new PVector(20, 20));
     this.shape.draw(255, 0, 0);
+=======
+    fill(255, 0, 0);
+    rect(pos.x, pos.y, 20, 20);
+    this.force.mult(0);
+>>>>>>> 64b2c7661959e440bfac4b6a447133de2fb11e6d
   }
 
-  boolean collide() {
-    if (this.pos.y - 680 >= 0 && this.pos.x > 70 && this.pos.x < 1840 && this.onGround == false) {
-      return true;
-    } else return false;
+  void collide(int rectX, int rectY, int rectWidth, int rectHeight) {
+    if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, rectX, rectY, rectWidth, rectHeight)) {
+      if (this.pos.y < rectY) {
+        this.force = new PVector(this.force.x, min(this.force.y, 0));
+        this.force = new PVector(this.force.x, this.force.y - 1);
+        onGround = true;
+      }
+
+      if (this.pos.y > rectY) {
+        this.force = new PVector(this.force.x, max(this.force.y, 0));
+      }
+
+      if (this.pos.x < rectX) {
+        this.force = new PVector(min(this.force.x, 0), this.force.y);
+      }
+
+      if (this.pos.x < rectX) {
+        this.force = new PVector(max(this.force.x, 0), this.force.y);
+      }
+    }
   }
 
   PVector move() {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
-      println("key");
       if (keys[0] == true && this.jumps > 0) {
         this.jumps -= 1;
         this.onGround = false;
-        force.add(new PVector(0, -10));
-        println("w");
+        force.add(new PVector(0, -30));
       }
 
       if (keys[1]) {
