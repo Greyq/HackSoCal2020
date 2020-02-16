@@ -25,8 +25,8 @@ class Player {
     this.alive = true;
     this.vel = new PVector(0, 0);
     this.sprite = loadImage(sprite);
-    this.sprite.resize(500/5, 789/5);
-    this.shape = new Shape(pos, new PVector(500/5, 789/5), color(255, 0, 0), false, this.sprite);
+    this.sprite.resize(500/10, 789/10);
+    this.shape = new Shape(pos, new PVector(500/10, 789/10), color(255, 0, 0), false, this.sprite);
     this.player2 = player2;
     if(player2) this.inputStartVal = 5;
   }
@@ -49,13 +49,6 @@ class Player {
     this.vel.add(this.force);
     this.vel.mult(friction);
     this.pos.add(this.vel);
-
-    //if (this.alive == false) {
-    //  this.pos = new PVector(0, 0);
-    //  this.onGround = false;
-    //  this.jumps = 0;
-    //  this.alive = true;
-    //}
 
     this.shape.pos = this.pos;
     this.shape.drawShape();

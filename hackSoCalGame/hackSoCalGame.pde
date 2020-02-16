@@ -1,8 +1,7 @@
 Player gamer;
 Player gamer1;
 boolean[] keys;
-int blockCount = 20;
-Shape[] blocks = new Shape[blockCount + 5 + 5];
+Shape[] blocks = new Shape[30];
 Projectile[] bullets = new Projectile[0];
 
 int p1Wins = 0;
@@ -135,7 +134,7 @@ boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOn
 
 void reset() {
   gamer = new Player(new PVector(100, 50), 0.9, 0.7, false, "princess.png");
-  gamer1 = new Player(new PVector(1720, 50), 0.9, 0.7, true, "wizard.png");
+  gamer1 = new Player(new PVector(1770, 50), 0.9, 0.7, true, "wizard.png");
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
@@ -143,15 +142,19 @@ void reset() {
   blockSprite = loadImage("fullPlatform.png");
   blockBreakSprite = loadImage("BreakingPlatform.png");
 
-  for (int i=0; i<blockCount; i++) {
-    blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true, null);
+  for (int i=0; i<10; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
   }
 
-  for (int i=blockCount; i<blockCount + 5; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 470), new PVector(1840/blockCount, 50), color(0), true, null);
+  for (int i=10; i<15; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 10, 15, 70, 300), 470), new PVector(46, 25), color(0), true, null);
   }
 
-  for (int i=blockCount+5; i<blockCount + 10; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10, 1400, 1840), 470), new PVector(1840/blockCount, 50), color(0), true, null);
+  for (int i=15; i<20; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 15, 20, 1620, 1850), 470), new PVector(46, 25), color(0), true, null);
+  }
+  
+  for (int i=20; i<30; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 20, 30, 1160, 1620), 650), new PVector(46, 25), color(0), true, null);
   }
 }

@@ -40,10 +40,12 @@ class Shape {
       } else {
         image(sprite, this.pos.x, this.pos.y);
       }
-      
-      if(this.block){
+
+      if (this.block) {
+        blockSprite.resize(46, 25);
         image(blockSprite, this.pos.x, this.pos.y);
-        if(this.fading){
+        if (this.fading) {
+          blockBreakSprite.resize(46, 25);
           image(blockBreakSprite, this.pos.x, this.pos.y);
         }
       }
