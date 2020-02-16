@@ -7,6 +7,7 @@ class Shape {
   Timer fadeTimer;
   boolean block;
   boolean on;
+  double time = 1000;
 
   Shape(PVector pos, PVector size, color c, boolean block) {
     this.pos = pos;
@@ -26,7 +27,7 @@ class Shape {
       if (this.fading && this.block) {
         stroke(0);
         this.c = color(255);
-        if (fadeTimer.passed(1000)) {
+        if (fadeTimer.passed(this.time)) {
           this.removeShape();
         }
       }
@@ -47,5 +48,9 @@ class Shape {
   void fadeShape() {
     if(fading == false) this.fadeTimer.reset();
     this.fading = true;
+  }
+  
+  void reduceTime(double time) {
+    this.time -= time;
   }
 }

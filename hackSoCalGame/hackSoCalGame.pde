@@ -5,6 +5,7 @@ Shape[] blocks = new Shape[blockCount];
 Projectile[] bullets = new Projectile[0];
 
 void setup() {
+
   size(1920, 1080);
   gamer = new Player(new PVector(100, 50), 0.9, 1);
   keys=new boolean[5];
@@ -19,14 +20,26 @@ void setup() {
 void draw() {
   background(255);
   for (Shape shape : blocks){
-    if(shape.collided(gamer.shape)) shape.fadeShape();
+    if(shape.collided(gamer.shape)) {
+      shape.fadeShape();
+      shape.reduceTime(5);
+    }
     for (Projectile bullet : bullets){
-    if(shape.collided(bullet.shape)) shape.fadeShape();
+      //if (!bullet.shape.on) continue;
+      if(shape.collided(bullet.shape)) {
+        shape.fadeShape();
+        shape.reduceTime(200);
+        bullet.shape.removeShape();
+        println(bullet.shape.on);
+      }
     }
     shape.drawShape();
   }
   
   for (Projectile bullet : bullets){
+    if(bullet.shape.collided(gamer.shape)) {
+      gamer.vel.add(bullet.velocity);
+    }
     bullet.render();
   }
   
