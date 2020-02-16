@@ -33,6 +33,11 @@ class Player {
 
   //Draws the player
   void render() {
+    if (this.shootTimer.passed(300)) {
+      this.shape.sprite = this.sprite;
+    } else this.shape.sprite = fireSprite();
+
+
     this.fire();
     if (this.onGround) {
       jumps = 1;
@@ -117,10 +122,16 @@ class Player {
       bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0), this, projSprite()));
     }
   }
-  
-  PImage projSprite(){
-    if(player2){
+
+  PImage projSprite() {
+    if (player2) {
       return p2ProjSprite;
     } else return p1ProjSprite;
+  }
+
+  PImage fireSprite() {
+    if (player2) {
+      return p2Fire;
+    } else return p1Fire;
   }
 }  

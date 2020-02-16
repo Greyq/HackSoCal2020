@@ -17,6 +17,9 @@ PImage background;
 PImage p1ProjSprite;
 PImage p2ProjSprite;
 
+PImage p1Fire;
+PImage p2Fire;
+
 void setup() {
 
   size(1920, 1080);
@@ -148,6 +151,11 @@ void reset() {
   background = loadImage("back.png");
   p1ProjSprite = loadImage("princessProj.png");
   p2ProjSprite = loadImage("wizardProj.png");
+  p1Fire = loadImage("princessFire.png");
+  p2Fire = loadImage("wizardFire.png");
+  
+  p1Fire.resize(500/7, 789/7);
+  p2Fire.resize(500/7, 789/7);
 
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
