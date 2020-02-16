@@ -10,16 +10,15 @@ void setup() {
   keys = new boolean[] {false, false, false, false}; 
   
   for(int i=0; i<10; i++){
-    blocks[i] = new Shape(new PVector(map(i, 0, 10, 70, 1840), 700), new PVector(177, 100), color(0)); 
+    blocks[i] = new Shape(new PVector(map(i, 0, 10, 70, 1840), 700), new PVector(184, 100), color(0), true); 
   }
 }
 
 
 void draw() {
   background(255);
-  fill(0);
-  //rect(70, 700, 1770, 100);
   for (Shape shape : blocks){
+    if(shape.playerOn()) shape.fadeShape();
     shape.drawShape();
   }
   gamer.render();
@@ -52,8 +51,4 @@ boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOn
    if (rectOneX < rectTwoX + rectTwoWidth && rectOneX + rectOneWidth > rectTwoX && rectOneY < rectTwoY + rectTwoHeight && rectOneHeight + rectOneY > rectTwoY){
      return true;
    } else return false;
-}
-
-void mousePressed(){
-  blocks[0].removeShape();
 }

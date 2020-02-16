@@ -3,22 +3,49 @@ class Shape {
   PVector size;
   PVector vel;
   color c;
-  //ArrayList shnapes;
-  
-  Shape(PVector pos, PVector size, color c) {
+  boolean fading;
+  Timer fadeTimer;
+  boolean block;
+  boolean on;
+
+  Shape(PVector pos, PVector size, color c, boolean block) {
     this.pos = pos;
     this.size = size;
     this.c = c;
     this.vel = new PVector(0, 0);
-    //shnapes.add(this);
+    this.fading = false;
+    this.fadeTimer = new Timer();
+    this.block = block;
+    this.on = true;
   }
-  
+
   void drawShape() {
-    fill(c);
-    rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+    strokeWeight(5);
+    stroke(c);
+    if (this.on) {
+      if (this.fading && this.block) {
+        stroke(0);
+        this.c = color(255);
+        if (fadeTimer.passed(1000)) {
+          this.removeShape();
+        }
+      }
+      
+      fill(c);
+      rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+    }
   }
-  
-  void removeShape(){
-    this.size = new PVector(0, 0);  
+
+  void removeShape() {
+    this.on = false;
+  } 
+
+  boolean playerOn() {
+    return overlap(gamer.pos.x, gamer.pos.y, 20, 20, this.pos.x, this.pos.y, this.size.x, this.size.y);
+  }
+
+  void fadeShape() {
+    this.fadeTimer.reset();
+    this.fading = true;
   }
 }

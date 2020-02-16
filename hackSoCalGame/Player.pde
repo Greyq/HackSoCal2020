@@ -1,4 +1,3 @@
-Shape playerShape;
 
 class Player {
   //The variables we need for the player to allow movement
@@ -44,17 +43,18 @@ class Player {
     if (this.alive == false) {
       this.pos = new PVector(0, 0);
       this.onGround = false;
+      this.jumps = 0;
       this.alive = true;
     }
 
-    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0));
+    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false);
     this.shape.drawShape();
     this.force.mult(0);
   }
 
   //Manages the collisions
   void collide(Shape shape) {
-    if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, shape.pos.x, shape.pos.y, shape.size.x, shape.size.y)) {
+    if (overlap(int(this.pos.x), int(this.pos.y), 20, 20, shape.pos.x, shape.pos.y, shape.size.x, shape.size.y) && shape.on) {
       if (this.pos.y < shape.pos.y) {
         this.force = new PVector(this.force.x, min(this.force.y, -this.vel.y));
         this.force = new PVector(this.force.x, this.force.y - 1);
