@@ -5,6 +5,10 @@ int blockCount = 20;
 Shape[] blocks = new Shape[blockCount + 5 + 5];
 Projectile[] bullets = new Projectile[0];
 
+int p1Wins = 0;
+int p2Wins = 0;
+PFont minecraft;
+
 void setup() {
 
   size(1920, 1080);
@@ -12,23 +16,33 @@ void setup() {
   gamer1 = new Player(new PVector(1800, 50), 0.9, 0.7, true, "princess.png");
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
-
+  minecraft = createFont("Minecraft.ttf", 32); 
+   
   for (int i=0; i<blockCount; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true, null);
   }
   
   for (int i=blockCount; i<blockCount + 5; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 500), new PVector(1840/blockCount, 50), color(0), true, null);
+    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 470), new PVector(1840/blockCount, 50), color(0), true, null);
   }
   
   for (int i=blockCount+5; i<blockCount + 10; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10.5, 1420, 1850), 530), new PVector(1840/blockCount, 50), color(0), true, null);
+    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10.5, 1420, 1850), 470), new PVector(1840/blockCount, 50), color(0), true, null);
   }
 }
 
 
 void draw() {
   background(255);
+  
+  fill(0);
+  
+  textFont(minecraft);
+  textSize(100);
+  textAlign(CENTER);
+  text(str(p1Wins), 800, 150);
+  text(str(p2Wins), 1060, 150);
+  
   for (Shape shape : blocks) {
     if (shape.collided(gamer.shape)) {
       shape.fadeShape();

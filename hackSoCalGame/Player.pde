@@ -78,12 +78,12 @@ class Player {
 
       if (this.pos.x < shape.pos.x && onGround == false) {
         this.force = new PVector(min(this.force.x, -this.vel.x), this.force.y);
-        this.force = new PVector(this.force.x - 1, this.force.y);
+        //this.force = new PVector(this.force.x + 1, this.force.y);
       }
 
       if (this.pos.x > shape.pos.x && onGround == false) {
         this.force = new PVector(max(this.force.x, -this.vel.x), this.force.y);
-        this.force = new PVector(this.force.x + 1, this.force.y);
+        //this.force = new PVector(this.force.x - 1, this.force.y);
       }
     }
   }
