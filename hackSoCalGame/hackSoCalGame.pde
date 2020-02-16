@@ -1,7 +1,7 @@
 Player gamer;
 Player gamer1;
 boolean[] keys;
-Shape[] blocks = new Shape[30];
+Shape[] blocks = new Shape[40];
 Projectile[] bullets = new Projectile[0];
 
 int p1Wins = 0;
@@ -25,14 +25,14 @@ void draw() {
   background(255);
 
   for (Shape shape : blocks) {
-    if (shape.collided(gamer.shape)) {
+    /*if (shape.collided(gamer.shape)) {
       shape.fadeShape();
       shape.reduceTime(5);
     }
     if (shape.collided(gamer1.shape)) {
       shape.fadeShape();
       shape.reduceTime(5);
-    }
+    }*/
     for (Projectile bullet : bullets) {
       if (shape.collided(bullet.shape)) {
         shape.fadeShape();
@@ -45,10 +45,10 @@ void draw() {
 
   for (Projectile bullet : bullets) {
     if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
-      gamer.vel.add(bullet.velocity.mult(0.2));
+      gamer.vel.add(bullet.velocity.mult(0.4));
     }
     if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
-      gamer1.vel.add(bullet.velocity.mult(0.2));
+      gamer1.vel.add(bullet.velocity.mult(0.4));
     }
     bullet.render();
   }
@@ -156,5 +156,9 @@ void reset() {
   
   for (int i=20; i<30; i++) {
     blocks[i] = new Shape(new PVector(map(i, 20, 30, 1160, 1620), 650), new PVector(46, 25), color(0), true, null);
+  }
+  
+  for (int i=30; i<40; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 30, 40, 730, 1190), 800), new PVector(46, 25), color(0), true, null);
   }
 }
