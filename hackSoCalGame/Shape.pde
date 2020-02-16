@@ -7,7 +7,7 @@ class Shape {
   Timer fadeTimer;
   boolean block;
   boolean on;
-  double time = 1000;
+  double time = 2000;
   PImage sprite;
 
   Shape(PVector pos, PVector size, color c, boolean block, PImage sprite) {

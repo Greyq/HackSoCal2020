@@ -50,12 +50,12 @@ class Player {
     this.vel.mult(friction);
     this.pos.add(this.vel);
 
-    if (this.alive == false) {
-      this.pos = new PVector(0, 0);
-      this.onGround = false;
-      this.jumps = 0;
-      this.alive = true;
-    }
+    //if (this.alive == false) {
+    //  this.pos = new PVector(0, 0);
+    //  this.onGround = false;
+    //  this.jumps = 0;
+    //  this.alive = true;
+    //}
 
     this.shape.pos = this.pos;
     this.shape.drawShape();
