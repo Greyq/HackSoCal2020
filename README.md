@@ -12,5 +12,7 @@ Player 1:
 
 Player 2:
   Arrow Keys, /
+  
+Press M to return to the Map Screen
 
 Sprites were drawn using [Krita](https://krita.org/ "Krita's Home Page")
