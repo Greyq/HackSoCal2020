@@ -1,6 +1,7 @@
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
+//Audio player used for sound effects and music
 Minim minim;
 AudioPlayer fireball;
 AudioPlayer music;
@@ -42,14 +43,19 @@ AudioOutput out;
 
 
 void setup() {
+  
+  //2 modes, fullscreen and windowed, must be chosen before running game
+  
   size(1920, 1080, P2D);
   //fullScreen(P2D);
 
+  //where we load the sound
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
   music = minim.loadFile("russian.mp3");
   
   game = createGraphics(1920, 1080);
+  //where we load the sprites
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
   background = loadImage("back.png");
@@ -215,12 +221,15 @@ void keyReleased() {
   }
 }
 
+
+//Checks if objects are overlapping
 boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOneHeight, float rectTwoX, float rectTwoY, float rectTwoWidth, float rectTwoHeight) {
   if (rectOneX < rectTwoX + rectTwoWidth && rectOneX + rectOneWidth > rectTwoX && rectOneY < rectTwoY + rectTwoHeight && rectOneHeight + rectOneY > rectTwoY) {
     return true;
   } else return false;
 }
 
+//Resets the stage
 void reset() {
   if (mapNum == 3) {
     gamer = new Player(new PVector(630, 50), 0.9, 0.7, false, "princess.png");

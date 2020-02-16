@@ -1,4 +1,5 @@
 class Projectile {
+  //This class allows you to create projectiles with a specifc velocity vector and pos, it also uses the sprites we designed
   PVector pos;
   PVector velocity;
   PVector force;
@@ -18,6 +19,7 @@ class Projectile {
     this.player = player;
   }
 
+  //draws the sprites
   void render() {
 
     this.force = new PVector(this.force.x, this.force.y + gravity);
