@@ -47,12 +47,8 @@ void setup() {
 
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
-<<<<<<< HEAD
   music = minim.loadFile("russian.mp3");
   
-=======
-
->>>>>>> 976b124772f9550c760f1d6720624df0f632cd8a
   game = createGraphics(1920, 1080);
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
@@ -122,14 +118,13 @@ void setup() {
   map6XRight = map(1352+1920/4, 0, 1920, 0, width);
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
-
-<<<<<<< HEAD
-  out = minim.getLineOut();
-  // create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
-  wave = new Oscil( 440, 0.5f, Waves.SINE );
-  // patch the Oscil to the output
-  wave.patch(out);
-=======
+  
+  //out = minim.getLineOut();
+  //// create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
+  //wave = new Oscil( 440, 0.5f, Waves.SINE );
+  //// patch the Oscil to the output
+  //wave.patch(out);
+  
   timeXLeft = map(220, 0, 1920, 0, width);
   timeXRight = map(220 + 265, 0, 1920, 0, width);
   timeYLeft = map(350, 0, 1080, 0, height);
@@ -149,8 +144,6 @@ void setup() {
   minusXRight = map(1170 + 100, 0, 1920, 0, width);
   minusYLeft = map(705, 0, 1080, 0, height);
   minusYRight = map(705 + 100, 0, 1080, 0, height);
-
->>>>>>> 976b124772f9550c760f1d6720624df0f632cd8a
 }
 
 void draw() {
