@@ -52,7 +52,7 @@ void setup() {
   //where we load the sound
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
-  music = minim.loadFile("russian.mp3");
+  music = minim.loadFile("home.mp3");
   
   game = createGraphics(1920, 1080);
   //where we load the sprites

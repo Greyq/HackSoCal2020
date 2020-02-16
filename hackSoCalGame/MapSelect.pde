@@ -79,7 +79,7 @@ void mapScreen() {
   
   game.noTint();
   
-  if (mouseX > map4XLeft && mouseX < map4XRight && mouseY > map4YLeft && mouseY < map4YRight) {
+  /*if (mouseX > map4XLeft && mouseX < map4XRight && mouseY > map4YLeft && mouseY < map4YRight) {
     game.tint(200);
     mapNum = 4;
   } else game.noTint();
@@ -99,7 +99,7 @@ void mapScreen() {
     game.tint(200);
     mapNum = 6;
   } else game.noTint();
-  game.image(map6, 1352, 700);
+  game.image(map6, 1352, 700);*/
 
   //load map clicked on
   if(mousePressed && mapNum != 0 && mapTime.passed(500)){
