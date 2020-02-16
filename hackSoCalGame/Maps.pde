@@ -23,11 +23,16 @@ void map1() {
 
 void map2(){
   blocks = new Shape[40];
+  background = loadImage("cave.png");
+  
   for(int i=0; i<40; i++){
-    blocks[i] = new Shape(new PVector(map(i, 0, 40, 80, 1840), 600), new PVector(46, 25), color(0), true, null);
+    blocks[i] = new Shape(new PVector(map(i, 0, 40, 80, 1840), 800), new PVector(46, 25), color(0), true, null);
   }
 }
 
 void map3(){
+  blocks = new Shape[40];
+  background = loadImage("castleBack.png");
+  
   
 }
