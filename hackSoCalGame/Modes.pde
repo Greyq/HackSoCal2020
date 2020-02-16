@@ -5,6 +5,7 @@ Timer modeTime = new Timer();
 Timer timeModeTimer = new Timer();
 int timeRunning = 0;
 
+//define button boundries
 float timeXLeft;
 float timeXRight;
 float timeYLeft;
@@ -38,11 +39,12 @@ void modesScreen() {
   game.textSize(200);
   game.text("Modes", 960, 150);
 
-
+  //check if mouse if over a button
   if (mouseX > timeXLeft && mouseX < timeXRight && mouseY > timeYLeft && mouseY < timeYRight) {
     game.fill(100);
     game.rect(220, 350, 265, 100);
     mode = "time";
+    //load time mode if clicked
     if (mousePressed && modeTime.passed(1000)) {
       modes = false;
       running = true;
@@ -67,6 +69,7 @@ void modesScreen() {
     game.fill(100);
     game.rect(1435, 350, 265, 100);
     mode = "lives";
+    //load lives mode if clicked
     if (mousePressed && modeTime.passed(1000)) {
       modes = false;
       running = true;
@@ -88,6 +91,7 @@ void modesScreen() {
   count = max(count, 0);
   game.text(str(count), 960, 750);
 
+  //add to lives/time count
   mousePos = 0;
   if (mouseX > plusXLeft && mouseX < plusXRight && mouseY > plusYLeft && mouseY < plusYRight) {
     mousePos = 1;
@@ -96,6 +100,7 @@ void modesScreen() {
   game.textSize(200);
   game.text("+", 700, 750);
 
+  //subtract from lives/time count
   if (mouseX > minusXLeft && mouseX < minusXRight && mouseY > minusYLeft && mouseY < minusYRight) {
     mousePos = 2;
   }
@@ -103,6 +108,7 @@ void modesScreen() {
   game.text("-", 1220, 720);
 }
 
+//change count based on button clicks
 void mouseClicked() {
   if (mousePos == 1) {
     count++;

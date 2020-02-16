@@ -1,5 +1,6 @@
 int mapNum = 0;
 
+//defining tumbnail images
 PImage map1;
 PImage map2;
 PImage map3;
@@ -7,6 +8,8 @@ PImage map4;
 PImage map5;
 PImage map6;
 
+
+//defining boundries of buttons
 float map1XLeft;
 float map1XRight;
 float map1YLeft;
@@ -50,6 +53,7 @@ void mapScreen() {
   game.textAlign(CENTER, CENTER);
   game.text("Map Select", 960, 100);
 
+  //check if mouse is on each map icon
   if (mouseX > map1XLeft && mouseX < map1XRight && mouseY > map1YLeft && mouseY < map1YRight) {
     game.tint(200);
     mapNum = 1;
@@ -97,7 +101,7 @@ void mapScreen() {
   } else game.noTint();
   game.image(map6, 1352, 700);
 
-  
+  //load map clicked on
   if(mousePressed && mapNum != 0 && mapTime.passed(500)){
     modes = true;
     mapSelect = false;
