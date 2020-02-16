@@ -8,9 +8,7 @@ you can shoot
 Controls:
 
 Player 1:
-  
   WASD, F
 
 Player 2:
-  
   Arrow Key, /
