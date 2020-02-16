@@ -30,11 +30,11 @@ class Player {
 
     this.alive = this.inBounds();
 
-    this.force.add(move());
     this.force = new PVector(this.force.x, this.force.y + gravity);
     for (Shape shape : blocks){
       this.collide(shape);
     }
+    this.force.add(move());
 
     this.vel.add(this.force);
     this.vel.mult(friction);
@@ -82,18 +82,18 @@ class Player {
       if (keys[0] == true && this.jumps > 0) {
         this.jumps -= 1;
         this.onGround = false;
-        force.add(new PVector(0, -30));
+        this.force.add(new PVector(0, -40));
       }
       if (keys[1]) {
-        force.add(new PVector(-1, 0));
+        this.force.add(new PVector(-1, 0));
       }
 
       if (keys[2]) {
-        force.add(new PVector(0, 0));
+        this.force.add(new PVector(0, 0));
       }
 
       if (keys[3]) {
-        force.add(new PVector(1, 0));
+        this.force.add(new PVector(1, 0));
       }
     }
     return force;

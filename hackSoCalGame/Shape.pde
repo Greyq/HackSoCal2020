@@ -45,7 +45,7 @@ class Shape {
   }
 
   void fadeShape() {
-    this.fadeTimer.reset();
+    if(fading == false) this.fadeTimer.reset();
     this.fading = true;
   }
 }
