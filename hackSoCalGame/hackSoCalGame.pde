@@ -49,7 +49,7 @@ void keyReleased() {
     keys[2]=false;
   if (key=='d')
     keys[3]=false;
-   if (key=='  f')
+   if (key=='f')
     keys[4]=true;
 }
 
