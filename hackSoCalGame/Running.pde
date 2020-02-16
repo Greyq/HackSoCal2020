@@ -32,27 +32,45 @@ void gameLoop() {
   }
 
   if (gamer.alive == false) {
-    p2Wins++;
+    if (mode == "lives") {
+      p1Wins--;
+    } else {
+      p2Wins++;
+    }
     reset();
   }
 
   if (gamer1.alive == false) {
-    p1Wins++;
+    if (mode == "lives") {
+      p2Wins--;
+    } else {
+      p1Wins++;
+    }
     reset();
   }
 
-  gamer.render();
-  gamer1.render();
+  if (mode == "lives") {
+    if (p1Wins == 0) {
+      winScreen("Player 2");
+    } else if (p2Wins == 0) {
+      winScreen("Player 1");
+    }
+  }
 
-  game.fill(0);
-  game.textFont(minecraft);
-  game.textSize(100);
-  game.textAlign(CENTER, CENTER);
-  if (mapNum == 2) {
-    game.text(str(p1Wins), 690, 200);
-    game.text(str(p2Wins), 1270, 200);
-  } else {
-    game.text(str(p1Wins), 790, 200);
-    game.text(str(p2Wins), 1140, 200);
+  if (!gameOver) {
+    gamer.render();
+    gamer1.render();
+
+    game.fill(0);
+    game.textFont(minecraft);
+    game.textSize(100);
+    game.textAlign(CENTER, CENTER);
+    if (mapNum == 2) {
+      game.text(str(p1Wins), 690, 200);
+      game.text(str(p2Wins), 1270, 200);
+    } else {
+      game.text(str(p1Wins), 790, 200);
+      game.text(str(p2Wins), 1140, 200);
+    }
   }
 }

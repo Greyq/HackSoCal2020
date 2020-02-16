@@ -11,8 +11,8 @@ boolean[] keys;
 Shape[] blocks;
 Projectile[] bullets = new Projectile[0];
 
-int p1Wins = 0;
-int p2Wins = 0;
+int p1Wins;
+int p2Wins;
 PFont minecraft;
 
 PImage blockSprite;
@@ -37,8 +37,8 @@ float yRightBound;
 
 
 void setup() {
-  //size(1920, 1080, P2D);
-  fullScreen(P2D);
+  size(1920, 1080, P2D);
+  //fullScreen(P2D);
 
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
@@ -222,7 +222,9 @@ void reset() {
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
   bullets = new Projectile[0];
-
+  
+  gameOver = false;
+  
   switch(mapNum) {
   case 1:
     map1();
