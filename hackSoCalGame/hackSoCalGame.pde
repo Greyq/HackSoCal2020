@@ -20,6 +20,7 @@ PImage blockBreakSprite;
 
 boolean running = false;
 boolean mapSelect = false;
+boolean modes = false;
 PImage background;
 
 PImage p1ProjSprite;
@@ -38,10 +39,10 @@ float yRightBound;
 void setup() {
   //size(1920, 1080, P2D);
   fullScreen(P2D);
-  
+
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
-  
+
   game = createGraphics(1920, 1080);
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
@@ -111,6 +112,27 @@ void setup() {
   map6XRight = map(1352+1920/4, 0, 1920, 0, width);
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
+
+  timeXLeft = map(220, 0, 1920, 0, width);
+  timeXRight = map(220 + 265, 0, 1920, 0, width);
+  timeYLeft = map(350, 0, 1080, 0, height);
+  timeYRight = map(350 + 100, 0, 1080, 0, height);
+  
+  livesXLeft = map(1435, 0, 1920, 0, width);
+  livesXRight = map(1435 + 265, 0, 1920, 0, width);
+  livesYLeft = map(350, 0, 1080, 0, height);
+  livesYRight = map(350 + 100, 0, 1080, 0, height);
+
+  plusXLeft = map(650, 0, 1920, 0, width);
+  plusXRight = map(650 + 100, 0, 1920, 0, width);
+  plusYLeft = map(705, 0, 1080, 0, height);
+  plusYRight = map(705 + 100, 0, 1080, 0, height);
+  
+  minusXLeft = map(1170, 0, 1920, 0, width);
+  minusXRight = map(1170 + 100, 0, 1920, 0, width);
+  minusYLeft = map(705, 0, 1080, 0, height);
+  minusYRight = map(705 + 100, 0, 1080, 0, height);
+
 }
 
 void draw() {
@@ -119,7 +141,9 @@ void draw() {
     mapScreen();
   } else if (running) {
     gameLoop();
-  } else startScreen();
+  } else if (modes) {
+    modesScreen();
+ } else startScreen();
   game.endDraw();
   image(game, 0, 0, width, height);
 }  

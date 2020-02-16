@@ -95,8 +95,7 @@ void mapScreen() {
   game.image(map6, 1352, 700);
   
   if(mousePressed && mapNum != 0 && mapTime.passed(100)){
-    running = true;
+    modes = true;
     mapSelect = false;
-    reset();
   }
 }
