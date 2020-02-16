@@ -92,6 +92,9 @@ void gameLoop() {
     }
   }
   if (mode == "time") {
+    if(mapNum == 2){
+      game.fill(255);
+    }
       game.text(str(count - mins) + ":" + extraZero() + str(timeRunning), 960, 300);
       if(mins == count && timeRunning == 0) winScreen(higherScore());
     }
