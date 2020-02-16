@@ -29,8 +29,8 @@ float yLeftBound;
 float yRightBound;
 
 void setup() {
-  size(1920, 1080, P2D);
-  //fullScreen(P2D);
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
   game = createGraphics(1920, 1080);
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
@@ -107,58 +107,63 @@ void draw() {
   if (mapSelect) {
     mapScreen();
   } else if (running) {
-      game.image(background, 0, 0);
+    game.image(background, 0, 0);
 
-      for (Shape shape : blocks) {
-        if (shape.on == false) continue;
-        /*if (shape.collided(gamer.shape)) {
-         shape.fadeShape();
-         shape.reduceTime(5);
-         }
-         if (shape.collided(gamer1.shape)) {
-         shape.fadeShape();
-         shape.reduceTime(5);
-         }*/
-        for (Projectile bullet : bullets) {
-          if (shape.collided(bullet.shape)) {
-            shape.fadeShape();
-            shape.reduceTime(500);
-            bullet.shape.removeShape();
-          }
-        }
-        shape.drawShape();
-      }
-
+    for (Shape shape : blocks) {
+      if (shape.on == false) continue;
+      /*if (shape.collided(gamer.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }
+       if (shape.collided(gamer1.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }*/
       for (Projectile bullet : bullets) {
-        if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
-          gamer.vel.add(bullet.velocity.mult(0.4));
+        if (shape.collided(bullet.shape)) {
+          shape.fadeShape();
+          shape.reduceTime(500);
+          bullet.shape.removeShape();
         }
-        if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
-          gamer1.vel.add(bullet.velocity.mult(0.4));
-        }
-        bullet.render();
       }
+      shape.drawShape();
+    }
 
-      if (gamer.alive == false) {
-        p2Wins++;
-        reset();
+    for (Projectile bullet : bullets) {
+      if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
+        gamer.vel.add(bullet.velocity.mult(0.4));
       }
-
-      if (gamer1.alive == false) {
-        p1Wins++;
-        reset();
+      if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
+        gamer1.vel.add(bullet.velocity.mult(0.4));
       }
+      bullet.render();
+    }
 
-      gamer.render();
-      gamer1.render();
+    if (gamer.alive == false) {
+      p2Wins++;
+      reset();
+    }
 
-      game.fill(0);
-      game.textFont(minecraft);
-      game.textSize(100);
-      game.textAlign(CENTER, CENTER);
+    if (gamer1.alive == false) {
+      p1Wins++;
+      reset();
+    }
+
+    gamer.render();
+    gamer1.render();
+
+    game.fill(0);
+    game.textFont(minecraft);
+    game.textSize(100);
+    game.textAlign(CENTER, CENTER);
+    if (mapNum == 2) {
+      game.text(str(p1Wins), 690, 200);
+      game.text(str(p2Wins), 1270, 200);
+    } else {
       game.text(str(p1Wins), 790, 200);
       game.text(str(p2Wins), 1140, 200);
-    } else startScreen();
+    }
+  } else startScreen();
   game.endDraw();
   image(game, 0, 0, width, height);
 }  
