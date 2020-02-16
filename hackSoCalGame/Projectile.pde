@@ -6,14 +6,15 @@ class Projectile {
   color c;
   float gravity = 0.5;
   Player player;
+  PImage sprite;
 
-
-  Projectile(PVector pos, PVector velocity, color c, Player player) {  
+  Projectile(PVector pos, PVector velocity, color c, Player player, PImage sprite) {  
     this.velocity = velocity;
     this.c = c;
     this.pos = pos;
     this.force = new PVector(0, 0);
-    this.shape = new Shape(pos, new PVector(10, 10), c, false, null);
+    this.sprite = sprite;
+    this.shape = new Shape(pos, new PVector(10, 10), c, false, this.sprite);
     this.player = player;
   }
 

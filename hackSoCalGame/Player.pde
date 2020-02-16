@@ -25,10 +25,10 @@ class Player {
     this.alive = true;
     this.vel = new PVector(0, 0);
     this.sprite = loadImage(sprite);
-    this.sprite.resize(500/10, 789/10);
-    this.shape = new Shape(pos, new PVector(500/10, 789/10), color(255, 0, 0), false, this.sprite);
+    this.sprite.resize(500/7, 789/7);
+    this.shape = new Shape(pos, new PVector(500/7, 789/7), color(255, 0, 0), false, this.sprite);
     this.player2 = player2;
-    if(player2) this.inputStartVal = 5;
+    if (player2) this.inputStartVal = 5;
   }
 
   //Draws the player
@@ -60,7 +60,6 @@ class Player {
     if (overlap(int(this.pos.x), int(this.pos.y), this.shape.size.x, this.shape.size.y, shape.pos.x, shape.pos.y, shape.size.x, shape.size.y) && shape.on) {
       if (this.pos.y < shape.pos.y) {
         this.force = new PVector(this.force.x, min(this.force.y, -this.vel.y));
-        this.force = new PVector(this.force.x, this.force.y - 1);
         onGround = true;
       } else onGround = false;
 
@@ -115,7 +114,13 @@ class Player {
   void fire() {
     if (keyPressed && keys[this.inputStartVal + 4] && this.shootTimer.passed(300)) {
       this.shootTimer.reset();
-      bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0), this));
+      bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0), this, projSprite()));
     }
+  }
+  
+  PImage projSprite(){
+    if(player2){
+      return p2ProjSprite;
+    } else return p1ProjSprite;
   }
 }  

@@ -1,7 +1,7 @@
 Player gamer;
 Player gamer1;
 boolean[] keys;
-Shape[] blocks = new Shape[30];
+Shape[] blocks = new Shape[40];
 Projectile[] bullets = new Projectile[0];
 
 int p1Wins = 0;
@@ -12,6 +12,10 @@ PImage blockSprite;
 PImage blockBreakSprite;
 
 boolean running = false;
+PImage background;
+
+PImage p1ProjSprite;
+PImage p2ProjSprite;
 
 void setup() {
 
@@ -22,17 +26,17 @@ void setup() {
 
 void draw() {
   if(running){
-  background(255);
+  background(background);
 
   for (Shape shape : blocks) {
-    if (shape.collided(gamer.shape)) {
+    /*if (shape.collided(gamer.shape)) {
       shape.fadeShape();
       shape.reduceTime(5);
     }
     if (shape.collided(gamer1.shape)) {
       shape.fadeShape();
       shape.reduceTime(5);
-    }
+    }*/
     for (Projectile bullet : bullets) {
       if (shape.collided(bullet.shape)) {
         shape.fadeShape();
@@ -45,10 +49,10 @@ void draw() {
 
   for (Projectile bullet : bullets) {
     if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
-      gamer.vel.add(bullet.velocity.mult(0.2));
+      gamer.vel.add(bullet.velocity.mult(0.4));
     }
     if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
-      gamer1.vel.add(bullet.velocity.mult(0.2));
+      gamer1.vel.add(bullet.velocity.mult(0.4));
     }
     bullet.render();
   }
@@ -70,8 +74,8 @@ void draw() {
   textFont(minecraft);
   textSize(100);
   textAlign(CENTER, CENTER);
-  text(str(p1Wins), 800, 150);
-  text(str(p2Wins), 1060, 150);
+  text(str(p1Wins), 790, 200);
+  text(str(p2Wins), 1140, 200);
   } else startScreen();
 }  
 
@@ -141,6 +145,9 @@ void reset() {
 
   blockSprite = loadImage("fullPlatform.png");
   blockBreakSprite = loadImage("BreakingPlatform.png");
+  background = loadImage("back.png");
+  p1ProjSprite = loadImage("princessProj.png");
+  p2ProjSprite = loadImage("wizardProj.png");
 
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
@@ -157,4 +164,10 @@ void reset() {
   for (int i=20; i<30; i++) {
     blocks[i] = new Shape(new PVector(map(i, 20, 30, 1160, 1620), 650), new PVector(46, 25), color(0), true, null);
   }
+  
+  for (int i=30; i<40; i++) {
+    blocks[i] = new Shape(new PVector(map(i, 30, 40, 730, 1190), 800), new PVector(46, 25), color(0), true, null);
+  }
+  
+  bullets = new Projectile[0];
 }
