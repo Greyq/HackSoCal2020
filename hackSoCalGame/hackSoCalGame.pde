@@ -31,7 +31,6 @@ void draw() {
       shape.reduceTime(5);
     }
     for (Projectile bullet : bullets) {
-      //if (!bullet.shape.on) continue;
       if (shape.collided(bullet.shape)) {
         shape.fadeShape();
         shape.reduceTime(200);
