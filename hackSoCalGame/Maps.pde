@@ -27,3 +27,7 @@ void map2(){
     blocks[i] = new Shape(new PVector(map(i, 0, 40, 80, 1840), 600), new PVector(46, 25), color(0), true, null);
   }
 }
+
+void map3(){
+  
+}

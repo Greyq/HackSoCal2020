@@ -19,7 +19,8 @@ void startScreen(){
       game.rect(750, 710, 370, 110);
       
       if(mousePressed){
-        running = true;
+        mapSelect = true;
+        mapTime.reset();
       }
   }
 }
