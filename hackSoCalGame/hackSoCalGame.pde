@@ -46,8 +46,8 @@ void setup() {
   
   //2 modes, fullscreen and windowed, must be chosen before running game
   
-  size(1920, 1080, P2D);
-  //fullScreen(P2D);
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
 
   //where we load the sound
   minim = new Minim(this);
