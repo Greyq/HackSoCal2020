@@ -1,9 +1,9 @@
 # HackSoCal2020
 Project for HackSoCal
 
-an odd fucking PvP platformer made in processing or some shit
+an odd PvP platformer made in processing
 
-you can shoot 
+you can shoot to break blocks 
 
 Controls:
 
