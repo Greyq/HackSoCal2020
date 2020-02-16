@@ -143,8 +143,8 @@ void reset() {
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
 
-  blockSprite = loadImage("fullPlatform.png");
-  blockBreakSprite = loadImage("BreakingPlatform.png");
+  blockSprite = loadImage("fullPlatform2.png");
+  blockBreakSprite = loadImage("breakingPlatform2.png");
   background = loadImage("back.png");
   p1ProjSprite = loadImage("princessProj.png");
   p2ProjSprite = loadImage("wizardProj.png");
