@@ -20,6 +20,7 @@ class Player {
     this.force = new PVector(0, 0);
     this.alive = true;
     this.vel = new PVector(0, 0);
+    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false);
   }
 
   //Draws the player
@@ -31,7 +32,7 @@ class Player {
     this.alive = this.inBounds();
 
     this.force = new PVector(this.force.x, this.force.y + gravity);
-    for (Shape shape : blocks){
+    for (Shape shape : blocks) {
       this.collide(shape);
     }
     this.force.add(move());

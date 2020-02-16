@@ -40,8 +40,8 @@ class Shape {
     this.on = false;
   } 
 
-  boolean playerOn() {
-    return overlap(gamer.pos.x, gamer.pos.y, 20, 20, this.pos.x, this.pos.y, this.size.x, this.size.y);
+  boolean collided(Shape s) {
+    return overlap(s.pos.x, s.pos.y, s.size.x, s.size.y, this.pos.x, this.pos.y, this.size.x, this.size.y);
   }
 
   void fadeShape() {

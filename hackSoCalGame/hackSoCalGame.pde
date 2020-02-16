@@ -20,8 +20,10 @@ void setup() {
 
 void draw() {
   background(255);
+  shoot.fire();
   for (Shape shape : blocks){
-    if(shape.playerOn()) shape.fadeShape();
+    if(shape.collided(gamer.shape)) shape.fadeShape();
+    if(shape.collided(shoot.shape)) shape.removeShape();
     shape.drawShape();
   }
   gamer.render();
@@ -51,7 +53,7 @@ void keyReleased() {
   if (key=='d')
     keys[3]=false;
    if (key=='f')
-    keys[4]=true;
+    keys[4]=false;
 }
 
 boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOneHeight, float rectTwoX, float rectTwoY, float rectTwoWidth, float rectTwoHeight){
