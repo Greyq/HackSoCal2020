@@ -29,8 +29,8 @@ float yLeftBound;
 float yRightBound;
 
 void setup() {
-  //size(1920, 1080, P2D);
-  fullScreen(P2D);
+  size(1920, 1080, P2D);
+  //fullScreen(P2D);
   game = createGraphics(1920, 1080);
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
@@ -191,6 +191,12 @@ void keyPressed() {
       keys[7]=true;
     if (keyCode == RIGHT)
       keys[8]=true;
+     
+    }
+    //return to map select
+    if(key == 'm'){
+      mapSelect = true;
+      running = false;
   }
 }
 
