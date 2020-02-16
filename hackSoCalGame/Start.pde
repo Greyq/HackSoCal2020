@@ -1,5 +1,8 @@
 
 void startScreen(){
+  music.pause();
+  music.rewind();
+  
   game.fill(0, 255, 0);
   game.rect(0, 0, 1920, 1080);
   

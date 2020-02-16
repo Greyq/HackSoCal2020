@@ -1,3 +1,5 @@
+int mins = 0;
+
 void gameLoop() {
   game.image(background, 0, 0);
 
@@ -22,7 +24,7 @@ void gameLoop() {
   }
   //float amp = map(music.getVolume(), 0, 100, 1, 0 );
   //wave.setAmplitude( amp );
-  
+
   //wave.setFrequency(10000);
 
   for (Projectile bullet : bullets) {
@@ -70,6 +72,17 @@ void gameLoop() {
     game.textFont(minecraft);
     game.textSize(100);
     game.textAlign(CENTER, CENTER);
+
+    if (timeModeTimer.passed(1000)) {
+      timeRunning -= 1;
+      timeModeTimer.reset();
+    }
+    if (timeRunning < 0) {
+      timeRunning = 59;
+      mins++;
+    }
+
+
     if (mapNum == 2) {
       game.text(str(p1Wins), 690, 200);
       game.text(str(p2Wins), 1270, 200);
@@ -77,5 +90,25 @@ void gameLoop() {
       game.text(str(p1Wins), 790, 200);
       game.text(str(p2Wins), 1140, 200);
     }
+  }
+  if (mode == "time") {
+      game.text(str(count - mins) + ":" + extraZero() + str(timeRunning), 960, 300);
+      if(mins == count && timeRunning == 0) winScreen(higherScore());
+    }
+}
+
+String extraZero() {
+  if (timeRunning < 10) {
+    return "0";
+  } else return "";
+}
+
+String higherScore(){
+  if(p1Wins > p2Wins){
+    return "Player 1";
+  } else if(p2Wins > p1Wins){
+    return "Player 2";
+  } else {
+    return "Player 1 and Player 2";
   }
 }

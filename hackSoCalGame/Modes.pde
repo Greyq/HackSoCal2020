@@ -2,6 +2,8 @@ int count = 3;
 String mode = null;
 int mousePos = 0;
 Timer modeTime = new Timer();
+Timer timeModeTimer = new Timer();
+int timeRunning = 0;
 
 float timeXLeft;
 float timeXRight;
@@ -24,6 +26,9 @@ float minusYLeft;
 float minusYRight;
 
 void modesScreen() {
+  music.pause();
+  music.rewind();
+  
   game.fill(0, 255, 0);
   game.rect(0, 0, 1920, 1080);
 
@@ -38,7 +43,7 @@ void modesScreen() {
     game.fill(100);
     game.rect(220, 350, 265, 100);
     mode = "time";
-    if (mousePressed && modeTime.passed(500)) {
+    if (mousePressed && modeTime.passed(1000)) {
       modes = false;
       running = true;
       if (mode == "lives") {
@@ -48,6 +53,7 @@ void modesScreen() {
         p1Wins = 0;
         p2Wins = 0;
       }
+      timeModeTimer.reset();
       reset();
       music.play();
     }
@@ -61,7 +67,7 @@ void modesScreen() {
     game.fill(100);
     game.rect(1435, 350, 265, 100);
     mode = "lives";
-    if (mousePressed && modeTime.passed(500)) {
+    if (mousePressed && modeTime.passed(1000)) {
       modes = false;
       running = true;
       if (mode == "lives") {
