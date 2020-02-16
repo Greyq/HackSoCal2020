@@ -1,3 +1,5 @@
+PGraphics game;
+
 Player gamer;
 Player gamer1;
 boolean[] keys;
@@ -20,66 +22,80 @@ PImage p2ProjSprite;
 PImage p1Fire;
 PImage p2Fire;
 
-void setup() {
+float xLeftBound;
+float xRightBound;
+float yLeftBound;
+float yRightBound;
 
-  size(1920, 1080);
+void setup() {
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
+  game = createGraphics(1920, 1080);
   reset();
+
+  xLeftBound = map(750, 0, 1920, 0, width);
+  xRightBound = map(1120, 0, 1920, 0, width);
+  yLeftBound = map(710, 0, 1080, 0, height);
+  yRightBound = map(820, 0, 1080, 0, height);
 }
 
-
 void draw() {
-  if(running){
-  background(background);
+  game.beginDraw();
+  if (running) {
+    game.image(background, 0, 0);
 
-  for (Shape shape : blocks) {
-    /*if (shape.collided(gamer.shape)) {
-      shape.fadeShape();
-      shape.reduceTime(5);
-    }
-    if (shape.collided(gamer1.shape)) {
-      shape.fadeShape();
-      shape.reduceTime(5);
-    }*/
-    for (Projectile bullet : bullets) {
-      if (shape.collided(bullet.shape)) {
-        shape.fadeShape();
-        shape.reduceTime(500);
-        bullet.shape.removeShape();
+    for (Shape shape : blocks) {
+      if(shape.on == false) continue;
+      /*if (shape.collided(gamer.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }
+       if (shape.collided(gamer1.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }*/
+      for (Projectile bullet : bullets) {
+        if (shape.collided(bullet.shape)) {
+          shape.fadeShape();
+          shape.reduceTime(500);
+          bullet.shape.removeShape();
+        }
       }
+      shape.drawShape();
     }
-    shape.drawShape();
-  }
 
-  for (Projectile bullet : bullets) {
-    if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
-      gamer.vel.add(bullet.velocity.mult(0.4));
+    for (Projectile bullet : bullets) {
+      if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
+        gamer.vel.add(bullet.velocity.mult(0.4));
+      }
+      if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
+        gamer1.vel.add(bullet.velocity.mult(0.4));
+      }
+      bullet.render();
     }
-    if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
-      gamer1.vel.add(bullet.velocity.mult(0.4));
+
+    if (gamer.alive == false) {
+      p2Wins++;
+      reset();
     }
-    bullet.render();
-  }
-  
-  if(gamer.alive == false){
-    p2Wins++;
-    reset();
-  }
-  
-  if(gamer1.alive == false){
-    p1Wins++;
-    reset();
-  }
-  
-  gamer.render();
-  gamer1.render();
-  
-  fill(0);
-  textFont(minecraft);
-  textSize(100);
-  textAlign(CENTER, CENTER);
-  text(str(p1Wins), 790, 200);
-  text(str(p2Wins), 1140, 200);
+
+    if (gamer1.alive == false) {
+      p1Wins++;
+      reset();
+    }
+
+    gamer.render();
+    gamer1.render();
+
+    game.fill(0);
+    game.textFont(minecraft);
+    game.textSize(100);
+    game.textAlign(CENTER, CENTER);
+    game.text(str(p1Wins), 790, 200);
+    game.text(str(p2Wins), 1140, 200);
   } else startScreen();
+  game.endDraw();
+  image(game, 0, 0, width, height);
 }  
 
 
@@ -153,9 +169,12 @@ void reset() {
   p2ProjSprite = loadImage("wizardProj.png");
   p1Fire = loadImage("princessFire.png");
   p2Fire = loadImage("wizardFire.png");
-  
+
   p1Fire.resize(500/7, 789/7);
   p2Fire.resize(500/7, 789/7);
+
+  p1ProjSprite.resize(20, 20);
+  p2ProjSprite.resize(20, 20);
 
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
@@ -168,14 +187,14 @@ void reset() {
   for (int i=15; i<20; i++) {
     blocks[i] = new Shape(new PVector(map(i, 15, 20, 1620, 1850), 470), new PVector(46, 25), color(0), true, null);
   }
-  
+
   for (int i=20; i<30; i++) {
     blocks[i] = new Shape(new PVector(map(i, 20, 30, 1160, 1620), 650), new PVector(46, 25), color(0), true, null);
   }
-  
+
   for (int i=30; i<40; i++) {
     blocks[i] = new Shape(new PVector(map(i, 30, 40, 730, 1190), 800), new PVector(46, 25), color(0), true, null);
   }
-  
+
   bullets = new Projectile[0];
 }

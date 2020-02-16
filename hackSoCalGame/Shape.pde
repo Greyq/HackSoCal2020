@@ -23,7 +23,7 @@ class Shape {
   }
 
   void drawShape() {
-    noStroke();
+    game.noStroke();
     if (this.on) {
       if (this.fading && this.block) {
         this.c = color(255);
@@ -34,17 +34,17 @@ class Shape {
 
       fill(c);
       if (sprite == null) {
-        rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+        game.rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
       } else {
-        image(sprite, this.pos.x, this.pos.y);
+        game.image(sprite, this.pos.x, this.pos.y);
       }
 
       if (this.block) {
         blockSprite.resize(46, 25);
-        image(blockSprite, this.pos.x, this.pos.y);
+        game.image(blockSprite, this.pos.x, this.pos.y);
         if (this.fading) {
           blockBreakSprite.resize(46, 25);
-          image(blockBreakSprite, this.pos.x, this.pos.y);
+          game.image(blockBreakSprite, this.pos.x, this.pos.y);
         }
       }
     }

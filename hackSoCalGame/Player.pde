@@ -111,7 +111,7 @@ class Player {
 
   //Keeps player from going off the screen
   boolean inBounds() {
-    if (this.pos.y > height) {
+    if (this.pos.y > height || this.pos.x < -500 || this.pos.x > 1920 + 500) {
       return false;
     } else return true;
   }
