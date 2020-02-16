@@ -1,7 +1,7 @@
 # HackSoCal2020
-Project for hacksocal meme
+Project for HackSoCal
 
-this weird fucking PvP platformer shit
+an odd PvP platformer made in processing
 
 you can shoot 
 
@@ -11,4 +11,6 @@ Player 1:
   WASD, F
 
 Player 2:
-  Arrow Key, /
+  Arrow Keys, /
+
+Sprites were drawn using [Krita](https://krita.org/ "Krita's Home Page")
