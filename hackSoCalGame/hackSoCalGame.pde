@@ -90,6 +90,7 @@ void setup() {
 
   reset();
 
+  //defines boundries for all button
   xLeftBound = map(750, 0, 1920, 0, width);
   xRightBound = map(1120, 0, 1920, 0, width);
   yLeftBound = map(710, 0, 1080, 0, height);
@@ -125,12 +126,6 @@ void setup() {
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
   
-  //out = minim.getLineOut();
-  //// create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
-  //wave = new Oscil( 440, 0.5f, Waves.SINE );
-  //// patch the Oscil to the output
-  //wave.patch(out);
-  
   timeXLeft = map(220, 0, 1920, 0, width);
   timeXRight = map(220 + 265, 0, 1920, 0, width);
   timeYLeft = map(350, 0, 1080, 0, height);
@@ -153,6 +148,7 @@ void setup() {
 }
 
 void draw() {
+  //load screen that should be loaded
   game.beginDraw();
   if (mapSelect) {
     mapScreen();
@@ -166,6 +162,7 @@ void draw() {
 }  
 
 
+//check what keys are being pressed
 void keyPressed() {
   if (key=='w')
     keys[0]=true;
@@ -196,6 +193,7 @@ void keyPressed() {
   }
 }
 
+//remove keys from list if released
 void keyReleased() {
   if (key=='w')
     keys[0]=false;
@@ -245,6 +243,7 @@ void reset() {
   
   gameOver = false;
   
+  //load correct map
   switch(mapNum) {
   case 1:
     map1();

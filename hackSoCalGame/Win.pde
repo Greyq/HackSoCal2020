@@ -1,5 +1,7 @@
 boolean gameOver = false;
 
+
+//displays text of the winner
 void winScreen(String winner){
   game.fill(0, 255, 0);
   game.rect(0, 0, 1920, 1080);
