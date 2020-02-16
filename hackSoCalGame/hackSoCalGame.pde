@@ -29,10 +29,9 @@ float yLeftBound;
 float yRightBound;
 
 void setup() {
-  size(1920, 1080);
-  //fullScreen();
+  size(1920, 1080, P2D);
+  //fullScreen(P2D);
   game = createGraphics(1920, 1080);
-
   blockSprite = loadImage("fullPlatform2.png");
   blockBreakSprite = loadImage("breakingPlatform2.png");
   background = loadImage("back.png");
@@ -43,19 +42,19 @@ void setup() {
 
   map1 = loadImage("map1.png");
   map1.resize(1920/4, 1080/4);
-  
+
   map2 = loadImage("map2.png");
   map2.resize(1920/4, 1080/4);
-  
+
   map3 = loadImage("map3.png");
   map3.resize(1920/4, 1080/4);
-  
+
   map4 = loadImage("map4.png");
   map4.resize(1920/4, 1080/4);
-  
+
   map5 = loadImage("map5.png");
   map5.resize(1920/4, 1080/4);
-  
+
   map6 = loadImage("map6.png");
   map6.resize(1920/4, 1080/4);
 
@@ -71,44 +70,43 @@ void setup() {
   xRightBound = map(1120, 0, 1920, 0, width);
   yLeftBound = map(710, 0, 1080, 0, height);
   yRightBound = map(820, 0, 1080, 0, height);
-  
+
   map1XLeft = map(84, 0, 1920, 0, width);
   map1XRight = map(84+1920/4, 0, 1920, 0, width);
   map1YLeft = map(300, 0, 1080, 0, height);
   map1YRight = map(300+1080/4, 0, 1080, 0, height);
-  
+
   map2XLeft = map(960 - 1920/8, 0, 1920, 0, width);
   map2XRight = map(960 - 1920/8+1920/4, 0, 1920, 0, width);
   map2YLeft = map(300, 0, 1080, 0, height);
   map2YRight = map(300+1080/4, 0, 1080, 0, height);
-  
+
   map3XLeft = map(1352, 0, 1920, 0, width);
   map3XRight = map(1352+1920/4, 0, 1920, 0, width);
   map3YLeft = map(300, 0, 1080, 0, height);
   map3YRight = map(300+1080/4, 0, 1080, 0, height);
-  
+
   map4XLeft = map(84, 0, 1920, 0, width);
   map4XRight = map(84+1920/4, 0, 1920, 0, width);
   map4YLeft = map(700, 0, 1080, 0, height);
   map4YRight = map(700+1080/4, 0, 1080, 0, height);
-  
+
   map5XLeft = map(960 - 1920/8, 0, 1920, 0, width);
   map5XRight = map(960 - 1920/8+1920/4, 0, 1920, 0, width);
   map5YLeft = map(700, 0, 1080, 0, height);
   map5YRight = map(700+1080/4, 0, 1080, 0, height);
-  
+
   map6XLeft = map(1352, 0, 1920, 0, width);
   map6XRight = map(1352+1920/4, 0, 1920, 0, width);
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
-  }
+}
 
 void draw() {
   game.beginDraw();
   if (mapSelect) {
     mapScreen();
-  } else {
-    if (running) {
+  } else if (running) {
       game.image(background, 0, 0);
 
       for (Shape shape : blocks) {
@@ -161,7 +159,6 @@ void draw() {
       game.text(str(p1Wins), 790, 200);
       game.text(str(p2Wins), 1140, 200);
     } else startScreen();
-  }
   game.endDraw();
   image(game, 0, 0, width, height);
 }  
@@ -231,24 +228,24 @@ void reset() {
   minecraft = createFont("Minecraft.ttf", 32); 
   bullets = new Projectile[0];
 
-  switch(mapNum){
-    case 1:
-      map1();
-      break;
-    case 2:
-      map2();
-      break;
-     case 3:
-      map3();
-      break;
-     case 4:
-      //map4();
-      break;
-     case 5:
-      //map5();
-      break;
-     case 6:
-      //map6();
-      break;
+  switch(mapNum) {
+  case 1:
+    map1();
+    break;
+  case 2:
+    map2();
+    break;
+  case 3:
+    map3();
+    break;
+  case 4:
+    //map4();
+    break;
+  case 5:
+    //map5();
+    break;
+  case 6:
+    //map6();
+    break;
   }
 }

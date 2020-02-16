@@ -32,7 +32,7 @@ class Shape {
         }
       }
 
-      fill(c);
+      game.fill(c);
       if (sprite == null) {
         game.rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
       } else {
