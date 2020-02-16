@@ -93,7 +93,7 @@ void draw() {
     game.textAlign(CENTER, CENTER);
     game.text(str(p1Wins), 790, 200);
     game.text(str(p2Wins), 1140, 200);
-  } else startScreen();
+  } else mapScreen();//startScreen();
   game.endDraw();
   image(game, 0, 0, width, height);
 }  
