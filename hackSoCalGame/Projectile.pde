@@ -23,7 +23,7 @@ class Projectile {
     this.velocity.add(this.force);
     this.pos.add(this.velocity);
 
-    this.shape = new Shape(pos, new PVector(10, 10), c, false);
+    this.shape.pos = this.pos;
     this.shape.drawShape();
     this.force.mult(0);
   }

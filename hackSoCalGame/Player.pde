@@ -50,7 +50,7 @@ class Player {
       this.alive = true;
     }
 
-    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false);
+    this.shape.pos = this.pos;
     this.shape.drawShape();
     this.force.mult(0);
   }
