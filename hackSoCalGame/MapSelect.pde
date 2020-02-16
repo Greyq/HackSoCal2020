@@ -94,9 +94,10 @@ void mapScreen() {
   } else game.noTint();
   game.image(map6, 1352, 700);
   
-  if(mousePressed && mapNum != 0 && mapTime.passed(100)){
+  if(mousePressed && mapNum != 0 && mapTime.passed(1000)){
     running = true;
     mapSelect = false;
     reset();
+    music.play();
   }
 }

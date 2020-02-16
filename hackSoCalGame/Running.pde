@@ -40,7 +40,11 @@ void gameLoop() {
     p1Wins++;
     reset();
   }
-
+  
+  for(int i = 0; i < out.bufferSize() - 1; i++){
+    line( i, 50  - out.left.get(i)*50,  i+1, 50  - out.left.get(i+1)*50 );
+    line( i, 150 - out.right.get(i)*50, i+1, 150 - out.right.get(i+1)*50 );
+  }
   gamer.render();
   gamer1.render();
 
