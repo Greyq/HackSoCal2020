@@ -105,5 +105,6 @@ void mapScreen() {
   if(mousePressed && mapNum != 0 && mapTime.passed(500)){
     modes = true;
     mapSelect = false;
+    modeTime.reset();
   }
 }
