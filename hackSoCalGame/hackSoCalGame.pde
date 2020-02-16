@@ -12,6 +12,8 @@ PFont minecraft;
 PImage blockSprite;
 PImage blockBreakSprite;
 
+boolean running = false;
+
 void setup() {
 
   size(1920, 1080);
@@ -20,15 +22,8 @@ void setup() {
 
 
 void draw() {
+  if(running){
   background(255);
-
-  fill(0);
-
-  textFont(minecraft);
-  textSize(100);
-  textAlign(CENTER);
-  text(str(p1Wins), 800, 150);
-  text(str(p2Wins), 1060, 150);
 
   for (Shape shape : blocks) {
     if (shape.collided(gamer.shape)) {
@@ -42,7 +37,7 @@ void draw() {
     for (Projectile bullet : bullets) {
       if (shape.collided(bullet.shape)) {
         shape.fadeShape();
-        shape.reduceTime(200);
+        shape.reduceTime(500);
         bullet.shape.removeShape();
       }
     }
@@ -51,10 +46,10 @@ void draw() {
 
   for (Projectile bullet : bullets) {
     if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
-      gamer.vel.add(bullet.velocity.mult(0.5));
+      gamer.vel.add(bullet.velocity.mult(0.2));
     }
     if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
-      gamer1.vel.add(bullet.velocity.mult(0.5));
+      gamer1.vel.add(bullet.velocity.mult(0.2));
     }
     bullet.render();
   }
@@ -71,6 +66,14 @@ void draw() {
   
   gamer.render();
   gamer1.render();
+  
+  fill(0);
+  textFont(minecraft);
+  textSize(100);
+  textAlign(CENTER, CENTER);
+  text(str(p1Wins), 800, 150);
+  text(str(p2Wins), 1060, 150);
+  } else startScreen();
 }  
 
 
