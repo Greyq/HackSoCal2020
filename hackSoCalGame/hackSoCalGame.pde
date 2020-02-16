@@ -3,7 +3,7 @@ PGraphics game;
 Player gamer;
 Player gamer1;
 boolean[] keys;
-Shape[] blocks = new Shape[40];
+Shape[] blocks;
 Projectile[] bullets = new Projectile[0];
 
 int p1Wins = 0;
@@ -45,7 +45,7 @@ void draw() {
     game.image(background, 0, 0);
 
     for (Shape shape : blocks) {
-      if(shape.on == false) continue;
+      if (shape.on == false) continue;
       /*if (shape.collided(gamer.shape)) {
        shape.fadeShape();
        shape.reduceTime(5);
@@ -175,7 +175,12 @@ void reset() {
 
   p1ProjSprite.resize(20, 20);
   p2ProjSprite.resize(20, 20);
+  map1();
+  bullets = new Projectile[0];
+}
 
+void map1() {
+  blocks = new Shape[40];
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
   }
@@ -195,6 +200,4 @@ void reset() {
   for (int i=30; i<40; i++) {
     blocks[i] = new Shape(new PVector(map(i, 30, 40, 730, 1190), 800), new PVector(46, 25), color(0), true, null);
   }
-
-  bullets = new Projectile[0];
 }
