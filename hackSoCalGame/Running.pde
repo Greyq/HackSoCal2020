@@ -20,6 +20,10 @@ void gameLoop() {
     }
     shape.drawShape();
   }
+  //float amp = map(music.getVolume(), 0, 100, 1, 0 );
+  //wave.setAmplitude( amp );
+  
+  //wave.setFrequency(10000);
 
   for (Projectile bullet : bullets) {
     if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
@@ -60,6 +64,7 @@ void gameLoop() {
   if (!gameOver) {
     gamer.render();
     gamer1.render();
+
 
     game.fill(0);
     game.textFont(minecraft);

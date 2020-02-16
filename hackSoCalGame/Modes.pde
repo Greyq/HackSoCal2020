@@ -49,6 +49,7 @@ void modesScreen() {
         p2Wins = 0;
       }
       reset();
+      music.play();
     }
   }
 
@@ -71,6 +72,7 @@ void modesScreen() {
         p2Wins = 0;
       }
       reset();
+      music.play();
     }
   }
   game.fill(0);

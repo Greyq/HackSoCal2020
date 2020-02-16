@@ -13,8 +13,8 @@ boolean[] keys;
 Shape[] blocks;
 Projectile[] bullets = new Projectile[0];
 
-int p1Wins;
-int p2Wins;
+int p1Wins = 0;
+int p2Wins = 0;
 PFont minecraft;
 
 PImage blockSprite;
@@ -22,7 +22,6 @@ PImage blockBreakSprite;
 
 boolean running = false;
 boolean mapSelect = false;
-boolean modes = false;
 PImage background;
 
 PImage p1ProjSprite;
@@ -42,9 +41,9 @@ AudioOutput out;
 
 
 void setup() {
-  size(1920, 1080, P2D);
-  //fullScreen(P2D);
-
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
+  
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
   music = minim.loadFile("russian.mp3");
@@ -118,32 +117,12 @@ void setup() {
   map6XRight = map(1352+1920/4, 0, 1920, 0, width);
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
-  
+
   //out = minim.getLineOut();
   //// create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
-  //wave = new Oscil( 440, 0.5f, Waves.SINE );
+  //wave = new Oscil( 0, 0.5f, Waves.SINE );
   //// patch the Oscil to the output
   //wave.patch(out);
-  
-  timeXLeft = map(220, 0, 1920, 0, width);
-  timeXRight = map(220 + 265, 0, 1920, 0, width);
-  timeYLeft = map(350, 0, 1080, 0, height);
-  timeYRight = map(350 + 100, 0, 1080, 0, height);
-  
-  livesXLeft = map(1435, 0, 1920, 0, width);
-  livesXRight = map(1435 + 265, 0, 1920, 0, width);
-  livesYLeft = map(350, 0, 1080, 0, height);
-  livesYRight = map(350 + 100, 0, 1080, 0, height);
-
-  plusXLeft = map(650, 0, 1920, 0, width);
-  plusXRight = map(650 + 100, 0, 1920, 0, width);
-  plusYLeft = map(705, 0, 1080, 0, height);
-  plusYRight = map(705 + 100, 0, 1080, 0, height);
-  
-  minusXLeft = map(1170, 0, 1920, 0, width);
-  minusXRight = map(1170 + 100, 0, 1920, 0, width);
-  minusYLeft = map(705, 0, 1080, 0, height);
-  minusYRight = map(705 + 100, 0, 1080, 0, height);
 }
 
 void draw() {
@@ -152,9 +131,7 @@ void draw() {
     mapScreen();
   } else if (running) {
     gameLoop();
-  } else if (modes) {
-    modesScreen();
- } else startScreen();
+  } else startScreen();
   game.endDraw();
   image(game, 0, 0, width, height);
 }  
@@ -233,9 +210,7 @@ void reset() {
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
   bullets = new Projectile[0];
-  
-  gameOver = false;
-  
+
   switch(mapNum) {
   case 1:
     map1();

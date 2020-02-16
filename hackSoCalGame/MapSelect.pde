@@ -93,6 +93,7 @@ void mapScreen() {
     mapNum = 6;
   } else game.noTint();
   game.image(map6, 1352, 700);
+
   
   if(mousePressed && mapNum != 0 && mapTime.passed(500)){
     modes = true;

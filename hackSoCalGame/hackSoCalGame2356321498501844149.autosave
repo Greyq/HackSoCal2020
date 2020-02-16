@@ -1,5 +1,4 @@
 import ddf.minim.*;
-import ddf.minim.ugens.*;
 
 Minim minim;
 AudioPlayer fireball;
@@ -13,8 +12,8 @@ boolean[] keys;
 Shape[] blocks;
 Projectile[] bullets = new Projectile[0];
 
-int p1Wins;
-int p2Wins;
+int p1Wins = 0;
+int p2Wins = 0;
 PFont minecraft;
 
 PImage blockSprite;
@@ -22,7 +21,6 @@ PImage blockBreakSprite;
 
 boolean running = false;
 boolean mapSelect = false;
-boolean modes = false;
 PImage background;
 
 PImage p1ProjSprite;
@@ -36,15 +34,12 @@ float xRightBound;
 float yLeftBound;
 float yRightBound;
 
-Oscil wave;
-AudioOutput out;
-
 
 
 void setup() {
-  size(1920, 1080, P2D);
-  //fullScreen(P2D);
-
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
+  
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
   music = minim.loadFile("russian.mp3");
@@ -118,32 +113,6 @@ void setup() {
   map6XRight = map(1352+1920/4, 0, 1920, 0, width);
   map6YLeft = map(700, 0, 1080, 0, height);
   map6YRight = map(700+1080/4, 0, 1080, 0, height);
-  
-  //out = minim.getLineOut();
-  //// create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
-  //wave = new Oscil( 440, 0.5f, Waves.SINE );
-  //// patch the Oscil to the output
-  //wave.patch(out);
-  
-  timeXLeft = map(220, 0, 1920, 0, width);
-  timeXRight = map(220 + 265, 0, 1920, 0, width);
-  timeYLeft = map(350, 0, 1080, 0, height);
-  timeYRight = map(350 + 100, 0, 1080, 0, height);
-  
-  livesXLeft = map(1435, 0, 1920, 0, width);
-  livesXRight = map(1435 + 265, 0, 1920, 0, width);
-  livesYLeft = map(350, 0, 1080, 0, height);
-  livesYRight = map(350 + 100, 0, 1080, 0, height);
-
-  plusXLeft = map(650, 0, 1920, 0, width);
-  plusXRight = map(650 + 100, 0, 1920, 0, width);
-  plusYLeft = map(705, 0, 1080, 0, height);
-  plusYRight = map(705 + 100, 0, 1080, 0, height);
-  
-  minusXLeft = map(1170, 0, 1920, 0, width);
-  minusXRight = map(1170 + 100, 0, 1920, 0, width);
-  minusYLeft = map(705, 0, 1080, 0, height);
-  minusYRight = map(705 + 100, 0, 1080, 0, height);
 }
 
 void draw() {
@@ -151,10 +120,63 @@ void draw() {
   if (mapSelect) {
     mapScreen();
   } else if (running) {
-    gameLoop();
-  } else if (modes) {
-    modesScreen();
- } else startScreen();
+    game.image(background, 0, 0);
+
+    for (Shape shape : blocks) {
+      if (shape.on == false) continue;
+      /*if (shape.collided(gamer.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }
+       if (shape.collided(gamer1.shape)) {
+       shape.fadeShape();
+       shape.reduceTime(5);
+       }*/
+      for (Projectile bullet : bullets) {
+        if (shape.collided(bullet.shape) && bullet.shape.on) {
+          shape.fadeShape();
+          shape.reduceTime(500);
+          bullet.shape.removeShape();
+        }
+      }
+      shape.drawShape();
+    }
+
+    for (Projectile bullet : bullets) {
+      if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
+        gamer.vel.add(bullet.velocity.mult(0.4));
+      }
+      if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
+        gamer1.vel.add(bullet.velocity.mult(0.4));
+      }
+      bullet.render();
+    }
+
+    if (gamer.alive == false) {
+      p2Wins++;
+      reset();
+    }
+
+    if (gamer1.alive == false) {
+      p1Wins++;
+      reset();
+    }
+
+    gamer.render();
+    gamer1.render();
+
+    game.fill(0);
+    game.textFont(minecraft);
+    game.textSize(100);
+    game.textAlign(CENTER, CENTER);
+    if (mapNum == 2) {
+      game.text(str(p1Wins), 690, 200);
+      game.text(str(p2Wins), 1270, 200);
+    } else {
+      game.text(str(p1Wins), 790, 200);
+      game.text(str(p2Wins), 1140, 200);
+    }
+  } else startScreen();
   game.endDraw();
   image(game, 0, 0, width, height);
 }  
@@ -233,9 +255,7 @@ void reset() {
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
   bullets = new Projectile[0];
-  
-  gameOver = false;
-  
+
   switch(mapNum) {
   case 1:
     map1();
