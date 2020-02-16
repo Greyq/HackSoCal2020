@@ -35,7 +35,9 @@ class Player {
   void render() {
     if (this.shootTimer.passed(300)) {
       this.shape.sprite = this.sprite;
-    } else this.shape.sprite = fireSprite();
+    } else {
+      this.shape.sprite = fireSprite();
+    }
 
 
     this.fire();
@@ -120,6 +122,8 @@ class Player {
     if (keyPressed && keys[this.inputStartVal + 4] && this.shootTimer.passed(300)) {
       this.shootTimer.reset();
       bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0), this, projSprite()));
+      fireball.rewind();
+      fireball.play();
     }
   }
 
