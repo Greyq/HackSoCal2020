@@ -11,9 +11,11 @@ class Player {
   Shape shape;
   boolean alive;
   Timer shootTimer = new Timer();
+  boolean player2;
+  int inputStartVal = 0;
 
   //The player that we can create
-  Player(PVector pos, float friction, float gravity) {
+  Player(PVector pos, float friction, float gravity, boolean player2) {
     this.pos = pos;
     this.friction = friction;
     this.gravity = gravity;
@@ -22,6 +24,8 @@ class Player {
     this.alive = true;
     this.vel = new PVector(0, 0);
     this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false);
+    this.player2 = player2;
+    if(player2) this.inputStartVal = 5;
   }
 
   //Draws the player
@@ -66,14 +70,17 @@ class Player {
 
       if (this.pos.y > shape.pos.y) {
         this.force = new PVector(this.force.x, max(this.force.y, -this.vel.y));
+        this.force = new PVector(this.force.x, this.force.y + 1);
       }
 
       if (this.pos.x < shape.pos.x && onGround == false) {
         this.force = new PVector(min(this.force.x, -this.vel.x), this.force.y);
+        this.force = new PVector(this.force.x - 1, this.force.y);
       }
 
       if (this.pos.x > shape.pos.x && onGround == false) {
         this.force = new PVector(max(this.force.x, -this.vel.x), this.force.y);
+        this.force = new PVector(this.force.x + 1, this.force.y);
       }
     }
   }
@@ -82,20 +89,20 @@ class Player {
   PVector move() {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
-      if (keys[0] == true && this.jumps > 0) {
+      if (keys[this.inputStartVal] == true && this.jumps > 0) {
         this.jumps -= 1;
         this.onGround = false;
         this.force.add(new PVector(0, -40));
       }
-      if (keys[1]) {
+      if (keys[this.inputStartVal + 1]) {
         this.force.add(new PVector(-1, 0));
       }
 
-      if (keys[2]) {
+      if (keys[this.inputStartVal + 2]) {
         this.force.add(new PVector(0, 0));
       }
 
-      if (keys[3]) {
+      if (keys[this.inputStartVal + 3]) {
         this.force.add(new PVector(1, 0));
       }
     }
@@ -110,7 +117,7 @@ class Player {
   }
 
   void fire() {
-    if (keyPressed && keys[4] && this.shootTimer.passed(300)) {
+    if (keyPressed && keys[this.inputStartVal + 4] && this.shootTimer.passed(300)) {
       this.shootTimer.reset();
       bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0)));
     }
