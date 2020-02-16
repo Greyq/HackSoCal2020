@@ -20,6 +20,10 @@ void gameLoop() {
     }
     shape.drawShape();
   }
+  //float amp = map(music.getVolume(), 0, 100, 1, 0 );
+  //wave.setAmplitude( amp );
+  
+  //wave.setFrequency(10000);
 
   for (Projectile bullet : bullets) {
     if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
@@ -41,10 +45,13 @@ void gameLoop() {
     reset();
   }
   
-  for(int i = 0; i < out.bufferSize() - 1; i++){
-    line( i, 50  - out.left.get(i)*50,  i+1, 50  - out.left.get(i+1)*50 );
-    line( i, 150 - out.right.get(i)*50, i+1, 150 - out.right.get(i+1)*50 );
-  }
+  //game.stroke(255);
+  //game.strokeWeight(1);
+  
+  //for(int i = 0; i < out.bufferSize() - 1; i++){
+  //  game.line( i, 50  - out.left.get(i)*50,  i+1, 50  - out.left.get(i+1)*50 );
+  //  game.line( i, 150 - out.right.get(i)*50, i+1, 150 - out.right.get(i+1)*50 );
+  //}
   gamer.render();
   gamer1.render();
 
