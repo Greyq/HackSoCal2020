@@ -25,8 +25,8 @@ class Player {
     this.alive = true;
     this.vel = new PVector(0, 0);
     this.sprite = loadImage(sprite);
-    this.sprite.resize(50*2, 75*2);
-    this.shape = new Shape(pos, new PVector(50*2, 75*2), color(255, 0, 0), false, this.sprite);
+    this.sprite.resize(500/5, 789/5);
+    this.shape = new Shape(pos, new PVector(500/5, 789/5), color(255, 0, 0), false, this.sprite);
     this.player2 = player2;
     if(player2) this.inputStartVal = 5;
   }
