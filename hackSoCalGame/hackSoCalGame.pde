@@ -14,6 +14,9 @@ PImage blockBreakSprite;
 boolean running = false;
 PImage background;
 
+PImage p1ProjSprite;
+PImage p2ProjSprite;
+
 void setup() {
 
   size(1920, 1080);
@@ -143,6 +146,8 @@ void reset() {
   blockSprite = loadImage("fullPlatform.png");
   blockBreakSprite = loadImage("BreakingPlatform.png");
   background = loadImage("back.png");
+  p1ProjSprite = loadImage("princessProj.png");
+  p2ProjSprite = loadImage("wizardProj.png");
 
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
@@ -163,4 +168,6 @@ void reset() {
   for (int i=30; i<40; i++) {
     blocks[i] = new Shape(new PVector(map(i, 30, 40, 730, 1190), 800), new PVector(46, 25), color(0), true, null);
   }
+  
+  bullets = new Projectile[0];
 }
