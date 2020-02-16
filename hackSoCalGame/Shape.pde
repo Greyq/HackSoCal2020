@@ -7,7 +7,7 @@ class Shape {
   Timer fadeTimer;
   boolean block;
   boolean on;
-  double time = 2000;
+  double time = 1500;
   PImage sprite;
 
   Shape(PVector pos, PVector size, color c, boolean block, PImage sprite) {
@@ -23,11 +23,9 @@ class Shape {
   }
 
   void drawShape() {
-    strokeWeight(5);
-    stroke(c);
+    noStroke();
     if (this.on) {
       if (this.fading && this.block) {
-        stroke(0);
         this.c = color(255);
         if (fadeTimer.passed(this.time)) {
           this.removeShape();

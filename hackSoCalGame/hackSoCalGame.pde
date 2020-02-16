@@ -12,6 +12,7 @@ PImage blockSprite;
 PImage blockBreakSprite;
 
 boolean running = false;
+PImage background;
 
 void setup() {
 
@@ -22,7 +23,7 @@ void setup() {
 
 void draw() {
   if(running){
-  background(255);
+  background(background);
 
   for (Shape shape : blocks) {
     /*if (shape.collided(gamer.shape)) {
@@ -70,8 +71,8 @@ void draw() {
   textFont(minecraft);
   textSize(100);
   textAlign(CENTER, CENTER);
-  text(str(p1Wins), 800, 150);
-  text(str(p2Wins), 1060, 150);
+  text(str(p1Wins), 790, 200);
+  text(str(p2Wins), 1140, 200);
   } else startScreen();
 }  
 
@@ -141,6 +142,7 @@ void reset() {
 
   blockSprite = loadImage("fullPlatform.png");
   blockBreakSprite = loadImage("BreakingPlatform.png");
+  background = loadImage("back.png");
 
   for (int i=0; i<10; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, 10, 300, 760), 650), new PVector(46, 25), color(0), true, null);
