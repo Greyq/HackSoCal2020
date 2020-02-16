@@ -1,7 +1,7 @@
 # HackSoCal2020
 Project for HackSoCal
 
-an odd PvP platformer made in processing
+an odd fucking PvP platformer made in processing or some shit
 
 you can shoot 
 
