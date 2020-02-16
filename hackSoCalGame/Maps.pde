@@ -31,8 +31,14 @@ void map2(){
 }
 
 void map3(){
-  blocks = new Shape[40];
+  blocks = new Shape[21];
   background = loadImage("castleBack.png");
   
+  for(int i=0; i<14; i++){
+    blocks[i] = new Shape(new PVector(map(i, 0, 14, 638, 1282), 550), new PVector(46, 25), color(0), true, null);
+  }
   
+  for(int i=14; i<21; i++){
+    blocks[i] = new Shape(new PVector(map(i, 14, 21, 822, 1144), 300), new PVector(46, 25), color(0), true, null);
+  }
 }

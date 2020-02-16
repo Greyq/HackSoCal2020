@@ -120,7 +120,7 @@ void draw() {
        shape.reduceTime(5);
        }*/
       for (Projectile bullet : bullets) {
-        if (shape.collided(bullet.shape)) {
+        if (shape.collided(bullet.shape) && bullet.shape.on) {
           shape.fadeShape();
           shape.reduceTime(500);
           bullet.shape.removeShape();
@@ -226,8 +226,13 @@ boolean overlap(float rectOneX, float rectOneY, float rectOneWidth, float rectOn
 }
 
 void reset() {
-  gamer = new Player(new PVector(100, 50), 0.9, 0.7, false, "princess.png");
-  gamer1 = new Player(new PVector(1770, 50), 0.9, 0.7, true, "wizard.png");
+  if (mapNum == 3) {
+    gamer = new Player(new PVector(630, 50), 0.9, 0.7, false, "princess.png");
+    gamer1 = new Player(new PVector(1234, 50), 0.9, 0.7, true, "wizard.png");
+  } else {
+    gamer = new Player(new PVector(100, 50), 0.9, 0.7, false, "princess.png");
+    gamer1 = new Player(new PVector(1770, 50), 0.9, 0.7, true, "wizard.png");
+  }
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
