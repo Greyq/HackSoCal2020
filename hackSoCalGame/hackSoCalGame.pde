@@ -9,6 +9,9 @@ int p1Wins = 0;
 int p2Wins = 0;
 PFont minecraft;
 
+PImage blockSprite;
+PImage blockBreakSprite;
+
 void setup() {
 
   size(1920, 1080);
@@ -17,6 +20,9 @@ void setup() {
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
   minecraft = createFont("Minecraft.ttf", 32); 
+  
+  blockSprite = loadImage("fullPlatform.png");
+  blockBreakSprite = loadImage("BreakingPlatform.png");
    
   for (int i=0; i<blockCount; i++) {
     blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true, null);

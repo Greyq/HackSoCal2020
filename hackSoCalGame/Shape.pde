@@ -40,6 +40,13 @@ class Shape {
       } else {
         image(sprite, this.pos.x, this.pos.y);
       }
+      
+      if(this.block){
+        image(blockSprite, this.pos.x, this.pos.y);
+        if(this.fading){
+          image(blockBreakSprite, this.pos.x, this.pos.y);
+        }
+      }
     }
   }
 
