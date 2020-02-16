@@ -36,8 +36,8 @@ float yRightBound;
 
 
 void setup() {
-  size(1920, 1080, P2D);
-  //fullScreen(P2D);
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
   
   minim = new Minim(this);
   fireball = minim.loadFile("fireball.wav");
