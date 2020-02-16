@@ -10,6 +10,7 @@ class Player {
   boolean onGround;
   Shape shape;
   boolean alive;
+  Timer shootTimer = new Timer();
 
   //The player that we can create
   Player(PVector pos, float friction, float gravity) {
@@ -107,9 +108,11 @@ class Player {
       return false;
     } else return true;
   }
-  
-    void fire(){
-    if(keyPressed && keys[4]) bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, 0), color(0)));
+
+  void fire() {
+    if (keyPressed && keys[4] && this.shootTimer.passed(300)) {
+      this.shootTimer.reset();
+      bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0)));
+    }
   }
-  
 }  

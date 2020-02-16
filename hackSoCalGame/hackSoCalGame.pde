@@ -21,7 +21,7 @@ void draw() {
   for (Shape shape : blocks){
     if(shape.collided(gamer.shape)) shape.fadeShape();
     for (Projectile bullet : bullets){
-    if(shape.collided(bullet.shape)) shape.removeShape();
+    if(shape.collided(bullet.shape)) shape.fadeShape();
     }
     shape.drawShape();
   }
