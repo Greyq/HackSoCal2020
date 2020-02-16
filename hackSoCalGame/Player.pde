@@ -119,7 +119,7 @@ class Player {
   void fire() {
     if (keyPressed && keys[this.inputStartVal + 4] && this.shootTimer.passed(300)) {
       this.shootTimer.reset();
-      bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0)));
+      bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, this.vel.y), color(0), this));
     }
   }
 }  

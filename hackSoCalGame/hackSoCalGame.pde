@@ -2,19 +2,27 @@ Player gamer;
 Player gamer1;
 boolean[] keys;
 int blockCount = 20;
-Shape[] blocks = new Shape[blockCount];
+Shape[] blocks = new Shape[blockCount + 5 + 5];
 Projectile[] bullets = new Projectile[0];
 
 void setup() {
 
   size(1920, 1080);
-  gamer = new Player(new PVector(100, 50), 0.9, 1, false);
-  gamer1 = new Player(new PVector(1800, 50), 0.9, 1, true);
+  gamer = new Player(new PVector(100, 50), 0.9, 0.7, false);
+  gamer1 = new Player(new PVector(1800, 50), 0.9, 0.7, true);
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
 
   for (int i=0; i<blockCount; i++) {
-    blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 70, 1840), 700), new PVector(1840/blockCount, 100), color(0), true);
+    blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true);
+  }
+  
+  for (int i=blockCount; i<blockCount + 5; i++) {
+    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 500), new PVector(1840/blockCount, 50), color(0), true);
+  }
+  
+  for (int i=blockCount+5; i<blockCount + 10; i++) {
+    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10.5, 1420, 1850), 530), new PVector(1840/blockCount, 50), color(0), true);
   }
 }
 
@@ -41,10 +49,10 @@ void draw() {
   }
 
   for (Projectile bullet : bullets) {
-    if (bullet.shape.collided(gamer.shape)) {
+    if (bullet.shape.collided(gamer.shape) && bullet.player != gamer) {
       gamer.vel.add(bullet.velocity);
     }
-    if (bullet.shape.collided(gamer1.shape)) {
+    if (bullet.shape.collided(gamer1.shape) && bullet.player != gamer1) {
       gamer1.vel.add(bullet.velocity);
     }
     bullet.render();
