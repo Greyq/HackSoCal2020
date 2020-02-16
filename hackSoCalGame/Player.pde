@@ -80,7 +80,6 @@ class Player {
     PVector force = new PVector(0, 0);
     if (keyPressed) {
       if (keys[0] == true && this.jumps > 0) {
-        println(this.jumps);
         this.jumps -= 1;
         this.onGround = false;
         force.add(new PVector(0, -30));
