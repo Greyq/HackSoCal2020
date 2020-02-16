@@ -13,9 +13,10 @@ class Player {
   Timer shootTimer = new Timer();
   boolean player2;
   int inputStartVal = 0;
+  PImage sprite;
 
   //The player that we can create
-  Player(PVector pos, float friction, float gravity, boolean player2) {
+  Player(PVector pos, float friction, float gravity, boolean player2, String sprite) {
     this.pos = pos;
     this.friction = friction;
     this.gravity = gravity;
@@ -23,7 +24,9 @@ class Player {
     this.force = new PVector(0, 0);
     this.alive = true;
     this.vel = new PVector(0, 0);
-    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false);
+    this.sprite = loadImage(sprite);
+    this.sprite.resize(50, 50);
+    this.shape = new Shape(pos, new PVector(20, 20), color(255, 0, 0), false, this.sprite);
     this.player2 = player2;
     if(player2) this.inputStartVal = 5;
   }

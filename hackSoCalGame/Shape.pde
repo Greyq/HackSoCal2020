@@ -8,8 +8,9 @@ class Shape {
   boolean block;
   boolean on;
   double time = 1000;
+  PImage sprite;
 
-  Shape(PVector pos, PVector size, color c, boolean block) {
+  Shape(PVector pos, PVector size, color c, boolean block, PImage sprite) {
     this.pos = pos;
     this.size = size;
     this.c = c;
@@ -18,6 +19,7 @@ class Shape {
     this.fadeTimer = new Timer();
     this.block = block;
     this.on = true;
+    this.sprite = sprite;
   }
 
   void drawShape() {
@@ -31,9 +33,13 @@ class Shape {
           this.removeShape();
         }
       }
-      
+
       fill(c);
-      rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+      if (sprite == null) {
+        rect(this.pos.x, this.pos.y, this.size.x, this.size.y);
+      } else {
+        image(sprite, this.pos.x, this.pos.y);
+      }
     }
   }
 
@@ -46,10 +52,10 @@ class Shape {
   }
 
   void fadeShape() {
-    if(fading == false) this.fadeTimer.reset();
+    if (fading == false) this.fadeTimer.reset();
     this.fading = true;
   }
-  
+
   void reduceTime(double time) {
     this.time -= time;
   }

@@ -13,7 +13,7 @@ class Projectile {
     this.c = c;
     this.pos = pos;
     this.force = new PVector(0, 0);
-    this.shape = new Shape(pos, new PVector(10, 10), c, false);
+    this.shape = new Shape(pos, new PVector(10, 10), c, false, null);
     this.player = player;
   }
 

@@ -8,21 +8,21 @@ Projectile[] bullets = new Projectile[0];
 void setup() {
 
   size(1920, 1080);
-  gamer = new Player(new PVector(100, 50), 0.9, 0.7, false);
-  gamer1 = new Player(new PVector(1800, 50), 0.9, 0.7, true);
+  gamer = new Player(new PVector(100, 50), 0.9, 0.7, false, "wizard.png");
+  gamer1 = new Player(new PVector(1800, 50), 0.9, 0.7, true, "princess.png");
   keys=new boolean[10];
   keys = new boolean[] {false, false, false, false, false, false, false, false, false, false}; 
 
   for (int i=0; i<blockCount; i++) {
-    blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true);
+    blocks[i] = new Shape(new PVector(map(i, 0, blockCount, 300, 1590), 700), new PVector(1840/blockCount, 50), color(0), true, null);
   }
   
   for (int i=blockCount; i<blockCount + 5; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 500), new PVector(1840/blockCount, 50), color(0), true);
+    blocks[i] = new Shape(new PVector(map(i, blockCount, blockCount + 5.5, 70, 530), 500), new PVector(1840/blockCount, 50), color(0), true, null);
   }
   
   for (int i=blockCount+5; i<blockCount + 10; i++) {
-    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10.5, 1420, 1850), 530), new PVector(1840/blockCount, 50), color(0), true);
+    blocks[i] = new Shape(new PVector(map(i, blockCount + 5, blockCount + 10.5, 1420, 1850), 530), new PVector(1840/blockCount, 50), color(0), true, null);
   }
 }
 
