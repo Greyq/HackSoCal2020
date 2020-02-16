@@ -2,13 +2,11 @@ Player gamer;
 boolean[] keys;
 int blockCount = 20;
 Shape[] blocks = new Shape[blockCount];
-Projectile shoot;
-
+Projectile[] bullets = new Projectile[0];
 
 void setup() {
   size(1920, 1080);
   gamer = new Player(new PVector(100, 50), 0.9, 1);
-  shoot = new Projectile(new PVector(100, 50), new PVector(30, 0), color(0));
   keys=new boolean[5];
   keys = new boolean[] {false, false, false, false, false}; 
   
@@ -20,12 +18,18 @@ void setup() {
 
 void draw() {
   background(255);
-  shoot.fire();
   for (Shape shape : blocks){
     if(shape.collided(gamer.shape)) shape.fadeShape();
-    if(shape.collided(shoot.shape)) shape.removeShape();
+    for (Projectile bullet : bullets){
+    if(shape.collided(bullet.shape)) shape.removeShape();
+    }
     shape.drawShape();
   }
+  
+  for (Projectile bullet : bullets){
+    bullet.render();
+  }
+  
   gamer.render();
 }  
 

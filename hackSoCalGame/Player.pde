@@ -25,6 +25,7 @@ class Player {
 
   //Draws the player
   void render() {
+    this.fire();
     if (this.onGround) {
       jumps = 1;
     } 
@@ -106,4 +107,9 @@ class Player {
       return false;
     } else return true;
   }
+  
+    void fire(){
+    if(keyPressed && keys[4]) bullets = (Projectile[]) append(bullets, new Projectile(this.pos.copy(), new PVector(this.vel.x*5, 0), color(0)));
+  }
+  
 }  
